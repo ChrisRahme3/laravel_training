@@ -10,13 +10,9 @@ Furthermore, there should be a 2nd endpoint which returns the products in JSON f
 
 ## Data
 
-- Products: https://github.com/GoogleChromeLabs/sample-pie
+- [Products](https://github.com/GoogleChromeLabs/sample-pie-shop/blob/master/src/data/products.json)
 
-  shop/blob/master/src/data/products.json
-
-- Categories: https://github.com/GoogleChromeLabs/sample-pie
-
-  shop/blob/master/src/data/categories.json
+- [Categories](https://github.com/GoogleChromeLabs/sample-pie-shop/blob/master/src/data/categories.json)
 
 ## Setup
 
@@ -32,4 +28,15 @@ Furthermore, there should be a 2nd endpoint which returns the products in JSON f
 
    ```bat
    composer create-project --prefer-dist laravel/laravel laravel_training
+   cd laravel_training
+   ```
+   
+4. Create the MySQL database which will be used using the `database.sql` file
+
+5. Verify the database information is correct in the `.env` file lines 10-15
+   
+6. Run (serve) locally - Project will start on port 8000
+
+   ```bat
+   php artisan serve
    ```
