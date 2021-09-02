@@ -16,7 +16,7 @@ class CreateProductsTable extends Migration {
         // Create the schema - Categories table needs to be created first
         Schema::create('products', function (Blueprint $table) {
             $table->string('id')->unique();
-            $table->string('name');
+            $table->string('name', 32);
             $table->text('description');
             $table->text('features');
             $table->double('price', 10, 2);
@@ -24,7 +24,7 @@ class CreateProductsTable extends Migration {
             $table->text('url');
             //$table->string('category');
             $table->unsignedInteger('category_id');
-            $table->string('subcategory');
+            $table->string('subcategory', 32);
             $table->timestamps();
             
             //$table->foreign('category')->references('name')->on('categories')->onDelete('cascade');
