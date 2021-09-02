@@ -10,6 +10,8 @@ Furthermore, there should be a 2nd endpoint which returns the products in JSON f
 
 ## Data
 
+The below files are placed in the `database/json` folder.
+
 - [Products](https://github.com/GoogleChromeLabs/sample-pie-shop/blob/master/src/data/products.json)
 
 - [Categories](https://github.com/GoogleChromeLabs/sample-pie-shop/blob/master/src/data/categories.json)
@@ -31,7 +33,10 @@ Furthermore, there should be a 2nd endpoint which returns the products in JSON f
    cd laravel_training
    ```
    
-4. Create the MySQL database which will be used using the `database.sql` file
+4. Create the MySQL database which will be used in the project
+   ```sql
+   CREATE DATABASE laravel_training;
+   ```
 
 5. Verify the database information is correct in the `.env` file lines 10-15
    
