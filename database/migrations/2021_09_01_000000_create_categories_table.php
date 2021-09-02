@@ -19,8 +19,8 @@ class CreateCategoriesTable extends Migration {
             $table->timestamps();
         });
         
-        $json = json_decode(Storage::get('./database/categories.json'), true);
-
+        $json = json_decode(Storage::get('./public/json/categories.json'), true);
+        
         DB::table('categories')->insert(array($json));
     }
 

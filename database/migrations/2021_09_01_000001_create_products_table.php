@@ -36,7 +36,7 @@ class CreateProductsTable extends Migration {
         $categories_array = $categories_collection->toArray();
         
         // Get the products JSON file
-        $products_array = json_decode(Storage::get('./database/products.json'), true)['products']['data']['items'];
+        $products_array = json_decode(Storage::get('./database/json/products.json'), true)['products']['data']['items'];
         
         // Replace the category with its ID in the products JSON
         for ($row = 0; $row < count($products_array); $row++) {
