@@ -36,39 +36,50 @@ The below files are placed in the `storage/app/public/json` folder.
 
 ## Steps
 
+1. Install [Node.js](https://nodejs.org/en/download)
+
 1. Install [Composer](https://laravel.com/docs/4.2#install-composer)
 
-2. Install [Laravel](https://laravel.com/docs/4.2#install-laravel)
+1. Install [Laravel](https://laravel.com/docs/4.2#install-laravel)
 
    ```bat
    composer global require "laravel/installer=~1.1"
    ```
 
-3. Create project
+1. Create project
 
    ```bat
    composer create-project --prefer-dist laravel/laravel laravel_training
    cd laravel_training
    ```
 
-4. Create the MySQL database which will be used in the project
+1. Install Vue inside the project and run NPM
+
+   ```bat
+   composer require "laravel/ui"
+   php artisan ui vue
+   npm install
+   ```
+
+1. Create the MySQL database which will be used in the project
 
    ```sql
    CREATE DATABASE laravel_training;
    ```
 
-5. Verify the database information is correct in the `.env` file lines 10-15
+1. Verify the database information is correct in the `.env` file lines 10-15
 
-6. Create the tables (migrations)
+1. Create the tables (migrations)
 
    ```bat
    php artisan migrate:fresh --seed
    ```
 
-7. Run (serve) locally - Project will start on port 8000
+1. Run Laravel and Node locally - Project will start on port 8000
 
    ```bat
    php artisan serve
+   npm run dev
    ```
 
 ## Endpoints Guide
