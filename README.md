@@ -70,3 +70,11 @@ The below files are placed in the `storage/app/public/json` folder.
    ```bat
    php artisan serve
    ```
+
+## Endpoints Guide
+
+- `GET`
+  - All categories: `http://127.0.0.1:8000/api/categories`
+  - One category: `http://127.0.0.1:8000/api/categories/{id}`
+  - All products: `http://127.0.0.1:8000/api/products`
+  - One product: `http://127.0.0.1:8000/api/products/{id}`
