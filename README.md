@@ -10,7 +10,7 @@ Furthermore, there should be a 2nd endpoint which returns the products in JSON f
 
 ## Data
 
-The below files are placed in the `database/json` folder.
+The below files are placed in the `storage/app/public/json` folder.
 
 - [Products](https://github.com/GoogleChromeLabs/sample-pie-shop/blob/master/src/data/products.json)
 
@@ -19,9 +19,9 @@ The below files are placed in the `database/json` folder.
 ## Setup
 
 1. Install [Composer](https://laravel.com/docs/4.2#install-composer)
-   
+
 2. Install [Laravel](https://laravel.com/docs/4.2#install-laravel)
-   
+
    ```bat
    composer global require "laravel/installer=~1.1"
    ```
@@ -32,15 +32,22 @@ The below files are placed in the `database/json` folder.
    composer create-project --prefer-dist laravel/laravel laravel_training
    cd laravel_training
    ```
-   
+
 4. Create the MySQL database which will be used in the project
+
    ```sql
    CREATE DATABASE laravel_training;
    ```
 
 5. Verify the database information is correct in the `.env` file lines 10-15
-   
-6. Run (serve) locally - Project will start on port 8000
+
+6. Create the tables (migrations)
+
+   ```bat
+   php artisan migrate:fresh --seed
+   ```
+
+7. Run (serve) locally - Project will start on port 8000
 
    ```bat
    php artisan serve
