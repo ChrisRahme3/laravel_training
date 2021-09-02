@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +18,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::get('categories', function() {
+    return Category::all();
+});
+
+Route::get('categories/{id}', function($id) {
+    return Category::find($id);
+});
+
+Route::get('products', function() {
+    return Product::all();
+});
+
+Route::get('products/{id}', function($id) {
+    return Product::find($id);
 });
