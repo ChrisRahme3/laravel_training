@@ -1,3 +1,5 @@
+# Tasks
+
 ## Products - Task 1
 
 This task is about providing an API of products.
@@ -8,6 +10,22 @@ The data should be imported with the help with Eloquent to map the data to a SQL
 
 Furthermore, there should be a 2nd endpoint which returns the products in JSON format, retrieved through the database. Choose a JSON structure and data which you think is useful.
 
+## The View  - Task 2
+
+Provide a mini-interface (using vue3, typescript,nuxt, vuex, mixins, filters) which presents the imported products.
+
+## Laravel Dusk  - Task 3
+
+To be discussed before starting.
+
+## Tests  - Task 4
+
+Provide some useful tests, a functional, unit & browser test for both frontend and backend.
+
+---
+
+# Setup
+
 ## Data
 
 The below files are placed in the `storage/app/public/json` folder.
@@ -16,7 +34,7 @@ The below files are placed in the `storage/app/public/json` folder.
 
 - [Categories](https://github.com/GoogleChromeLabs/sample-pie-shop/blob/master/src/data/categories.json)
 
-## Setup
+## Steps
 
 1. Install [Composer](https://laravel.com/docs/4.2#install-composer)
 
