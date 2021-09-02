@@ -15,8 +15,8 @@ class CreateProductsTable extends Migration {
     public function up() {
         // Create the schema - Categories table needs to be created first
         Schema::create('products', function (Blueprint $table) {
-            $table->string('id')->unique();
-            $table->string('name', 32);
+            $table->string('id')->primary();
+            $table->string('name', 128);
             $table->text('description');
             $table->text('features');
             $table->double('price', 10, 2);
@@ -25,7 +25,6 @@ class CreateProductsTable extends Migration {
             //$table->string('category');
             $table->unsignedInteger('category_id');
             $table->string('subcategory', 32);
-            $table->timestamps();
             
             //$table->foreign('category')->references('name')->on('categories')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
@@ -36,15 +35,15 @@ class CreateProductsTable extends Migration {
         $categories_array = $categories_collection->toArray();
         
         // Get the products JSON file
-        $products_array = json_decode(Storage::get('./database/json/products.json'), true)['products']['data']['items'];
+        $products_array = json_decode(Storage::get('./public/json/products.json'), true)['products']['data']['items'];
         
         // Replace the category with its ID in the products JSON
-        for ($row = 0; $row < count($products_array); $row++) {
-            $product = $products_array[$row];
+        for ($row_number = 0; $row_number < count($products_array); $row_number++) {
+            $product = $products_array[$row_number];
             $category_id = array_search($product['category'], $categories_array); // Index of the category
 
             // Create `category_id` key and remove `category`
-            $product['category_id'] = $category_id;
+            $product['category_id'] = $category_id + 1;
             unset($product['category']);
 
             // Add product to database
