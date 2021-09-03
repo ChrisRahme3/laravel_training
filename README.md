@@ -12,7 +12,7 @@ Furthermore, there should be a 2nd endpoint which returns the products in JSON f
 
 ## The View  - Task 2
 
-Provide a mini-interface (using vue3, typescript, nuxt, vuex, mixins, filters) which presents the imported products.
+Provide a mini-interface (using Vue 3, TypeScript, Nuxt, Vuex, Mixins, Filters) which presents the imported products.
 
 ## Laravel Dusk  - Task 3
 
