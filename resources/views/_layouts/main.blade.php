@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="{{ asset('css/sb-admin.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
 <body id="page-top">
@@ -121,10 +122,10 @@
                 <div class="container-fluid">
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Products</h1>
+                        <h1 class="h3 mb-0 text-gray-800">@yield('heading')</h1>
                     </div>
 
-                    <div class="row">
+                    <div class="row m-4">
                         @yield('content')
                     </div>
                 </div>
@@ -156,6 +157,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('js/sb-admin.min.js') }}"></script>
+    <script src="{{ asset('js/helpers.js') }}"></script>
 </body>
 
 </html>
