@@ -6,8 +6,8 @@ import { routes } from './routes';
 
 Vue.use(VueRouter);
 
-//Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('products-index',    require('./components/products/Index.vue').default);
+Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('products-index', require('./components/products/Index.vue').default);
 
 const router = new VueRouter({
     mode: 'history',
