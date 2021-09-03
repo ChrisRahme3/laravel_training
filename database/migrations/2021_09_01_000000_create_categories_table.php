@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\JobControllers\CategoryJobController;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
@@ -17,17 +18,8 @@ class CreateCategoriesTable extends Migration {
             $table->increments('id');
             $table->string('name', 32);
         });
-        
-        $categories_array = json_decode(Storage::get('./public/json/categories.json'), true);
-        
-        for ($row_number = 0; $row_number < count($categories_array); $row_number++) {
-            $category = $categories_array[$row_number];
-            
-            DB::table('categories')->insert(array(
-                'id' => $row_number + 1,
-                'name' => $category
-            ));
-        }
+
+        CategoryJobController::importJson('./public/json/categories.json');
     }
 
     /**
