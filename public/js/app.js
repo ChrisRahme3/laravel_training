@@ -2037,19 +2037,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "routes": () => (/* binding */ routes)
 /* harmony export */ });
 /* harmony import */ var _components_products_Index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/products/Index */ "./resources/js/components/products/Index.vue");
- //import ProductsCreate from './components/products/Create';
 
 var routes = [{
   path: '/products/index',
   name: 'ProductsIndex',
   component: _components_products_Index__WEBPACK_IMPORTED_MODULE_0__.default
-}
-/*{
-    path: '/products/create',
-    name: 'ProductsCreate',
-    component: ProductsCreate
-}*/
-];
+}];
 
 /***/ }),
 
