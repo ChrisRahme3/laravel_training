@@ -25,6 +25,10 @@ class ProductJobController extends Controller {
             $product = $products_array[$row_number];
             $category_id = array_search($product['category'], $categories_array); // Index of the category
 
+            // Create `code` key and remove `id` (which will get auto-incremented)
+            $product['code'] = $product['id'];
+            unset($product['id']);
+            
             // Create `category_id` key and remove `category`
             $product['category_id'] = $category_id + 1;
             unset($product['category']);
@@ -36,7 +40,7 @@ class ProductJobController extends Controller {
 
     static public function fill(Request $request, Product $product) {
         $request->validate([
-            'id'          => 'required',
+            'code'        => 'required',
             'name'        => 'required|max:128',
             //'description' => ,
             //'features'    => ,
@@ -47,7 +51,7 @@ class ProductJobController extends Controller {
             'subcategory' => 'max:32'
         ]);
         
-        $product->id          = $request->id;
+        $product->code        = $request->code;
         $product->name        = $request->name;
         $product->description = $request->description;
         $product->features    = $request->features;

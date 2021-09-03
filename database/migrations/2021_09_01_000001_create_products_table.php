@@ -16,7 +16,8 @@ class CreateProductsTable extends Migration {
     public function up() {
         // Create the schema - Categories table needs to be created first
         Schema::create('products', function (Blueprint $table) {
-            $table->string('id')->primary();
+            $table->increments('id');
+            $table->string('code');
             $table->string('name', 128);
             $table->text('description')->nullable();
             $table->text('features')->nullable();
