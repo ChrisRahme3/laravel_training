@@ -1906,8 +1906,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -1938,8 +1936,8 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/api/products').then(function (response) {
         var data = response.data;
         _this2.products = Object.keys(data).map(function (key) {
-          data[key]['name'] = truncate(data[key]['name'], 40);
-          data[key]['description'] = truncate(data[key]['description'], 64);
+          data[key]['name'] = truncate(data[key]['name'], 60, false);
+          data[key]['description'] = truncate(data[key]['description'], 100, false);
           data[key]['subcategory'] = toTitle(data[key]['subcategory']);
           return data[key];
         });
@@ -37699,21 +37697,6 @@ var render = function() {
         )
       }),
       0
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      [
-        _c(
-          "router-link",
-          {
-            staticClass: "btn btn-primary m-2",
-            attrs: { to: { name: "ProductsCreate" } }
-          },
-          [_vm._v("\n            Test Button\n        ")]
-        )
-      ],
-      1
     )
   ])
 }
