@@ -2037,7 +2037,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_products_Index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/products/Index */ "./resources/js/components/products/Index.vue");
 
 var routes = [{
-  path: '/products/index',
+  path: '/products/index_vue',
   name: 'ProductsIndex',
   component: _components_products_Index__WEBPACK_IMPORTED_MODULE_0__.default
 }];

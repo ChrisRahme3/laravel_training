@@ -25,5 +25,5 @@ Route::resources([
 ]);
 
 Route::get('{any}', function() {
-    return view('products.index');
+    return view('products.index_vue');
 })->where('any', '.*');
