@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\JobControllers\ProductJobController;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -10,18 +11,20 @@ class ProductController extends Controller {
         return Product::all();
     }
  
-    public function show(Product $product) {
-        return $product;
+    public function show($id) {
+        return Product::find($id);
     }
 
     public function store(Request $request) {
-        $product = Product::create($request->all());
+        $product = ProductJobController::fill($request, new Product());
+        $product->save();
 
         return response()->json($product, 201); // Created
     }
 
-    public function update(Request $request, Product $product) {
-        $product->update($request->all());
+    public function update(Request $request, $id) {
+        $product = ProductJobController::fill($request, Product::find($id));
+        $product->save();
 
         return response()->json($product, 200); // OK
     }
