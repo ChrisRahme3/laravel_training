@@ -20,8 +20,8 @@ Route::get('/', function () {
 });
 
 Route::resources([
-    'categories' => CategoryController::class,
-    'products'   => ProductController::class,
+    'api/categories' => CategoryController::class,
+    'api/products'   => ProductController::class,
 ]);
 
 Route::get('{any}', function() {
