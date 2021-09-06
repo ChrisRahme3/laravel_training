@@ -1,9 +1,8 @@
 <?php
 
-if (!function_exists('my_function')) {
-    function my_function() {
-        return 0;
-    }
+// Capitalize the first letter of every word in `str`
+function toTitle($str) {
+    return ucwords($str, " \t\r\n\f\v");
 }
 
 ?>
