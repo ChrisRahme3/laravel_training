@@ -1,26 +1,26 @@
 <template>
     <div>
-        <div class="row">
+        <div id="products-grid" class="row">
             <div v-for="product in products" :key="product.id" class="col-sm-3" style="padding-bottom: 30px">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">{{ product.name }}</h5>
-                        
-                        <div class="mb-4">
-                            <p class="card-subtitle flex-auto float-left" >{{ categories[product.category_id] }} / {{ product.subcategory }}</p>
-                            <p class="card-subtitle flex-auto float-right">{{ product.price }}$</p>
+                        <div>
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            
+                            <div>
+                                <p class="card-subtitle flex-auto float-left" >{{ categories[product.category_id] }} / {{ product.subcategory }}</p>
+                                <p class="card-subtitle flex-auto float-right">{{ product.price }} $</p>
+                            </div>
                         </div>
                         
-                        <p class="card-text mt-5" style="font-size: 0.9rem">{{ product.description }}</p>
-                        <a :href="'../api/products/' + product.id" class="btn btn-primary float-right">Go</a>
+                        <div>
+                            <p class="card-text">{{ product.description }}</p>
+                            <a :href="`../product/${product.id}`" class="btn btn-primary float-right" target="_blank">Go</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <!--<router-link :to="{name: 'ProductsCreate'}" class="btn btn-primary m-2">
-            Test Button
-        </router-link>-->
     </div>
 </template>
 

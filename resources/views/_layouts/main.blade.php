@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="{{ asset('css/sb-admin.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/products.css') }}">
 </head>
 
 <body id="page-top">
@@ -63,7 +65,7 @@
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- Main Content -->
-            <div id="content">
+            <div id="content" style="background-color: white">
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                     <!-- Topbar Search -->
@@ -82,24 +84,24 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <div id="heading" class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">@yield('heading')</h1>
                     </div>
 
-                    <div class="row" style="padding-right: 15px; padding-left: 15px;">
+                    <div class="row" style="padding-right: 15px; padding-left: 15px; width: 100%">
                         @yield('content')
                     </div>
                 </div>
             </div>
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            <!--<footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>No Copyright &copy;</span>
                     </div>
                 </div>
-            </footer>
+            </footer>-->
         </div>
     </div>
 

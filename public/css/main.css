@@ -1,0 +1,10 @@
+#heading,
+#heading > h1 {
+    width: 100%;
+}
+
+#heading a {
+    float: right;
+    color: white;
+    font-size: 1rem;
+}

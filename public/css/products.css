@@ -1,0 +1,50 @@
+/* Products Index */
+#products-grid .card-title {
+    font-size: 1.2rem
+}
+
+#products-grid .card-text {
+    font-size: 0.9rem;
+    margin: 3rem 0 1.5rem 0;
+}
+
+/* Product Page */
+#product-image {
+    margin: 0 20px 0 0;
+}
+
+#product-header {
+    margin: 0 0 calc(1.8rem + 20px) 0;
+}
+
+#product-description {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+#product-info h1 {
+    font-size: 2.25rem;
+}
+
+#product-info h2 {
+    font-size: 1.8rem;
+    float: right;
+}
+
+#product-info h3 {
+    font-size: 1.575rem;
+}
+
+#product-info h4 {
+    font-size: 1.35rem;
+}
+
+#product-info h5 {
+    font-size: 1.125rem;
+    margin: 0 0 20px 0;
+}
+
+#product-info h6 {
+    font-size: 0.9rem;
+    margin: 0 0 10px 0;
+}
