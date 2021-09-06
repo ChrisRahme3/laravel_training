@@ -94,3 +94,7 @@ The below files are placed in the `storage/app/public/json` folder.
   - One category: `http://127.0.0.1:8000/api/categories/{id}`
   - All products: `http://127.0.0.1:8000/api/products`
   - One product: `http://127.0.0.1:8000/api/products/{id}`
+
+- Pages
+  - All products: `http://127.0.0.1:8000/products/index_vue`
+  - One product: `http://127.0.0.1:8000/product/1`
