@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\JobControllers\ProductJobController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,15 @@ Route::get('/', function () {
 Route::resources([
     'api/categories' => CategoryController::class,
     'api/products'   => ProductController::class,
+    //'product'        => ProductJobController::class
+]);
+
+Route::get('/products', function () {
+    return view('products.index_vue');
+});
+
+Route::get('/product/{id}', [
+    ProductJobController::class, 'display'
 ]);
 
 Route::get('{any}', function() {
