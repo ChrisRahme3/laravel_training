@@ -37651,7 +37651,7 @@ var render = function() {
   return _c("div", [
     _c(
       "div",
-      { staticClass: "row" },
+      { staticClass: "row", attrs: { id: "products-grid" } },
       _vm._l(_vm.products, function(product) {
         return _c(
           "div",
@@ -37663,47 +37663,49 @@ var render = function() {
           [
             _c("div", { staticClass: "card" }, [
               _c("div", { staticClass: "card-body" }, [
-                _c("h5", { staticClass: "card-title" }, [
-                  _vm._v(_vm._s(product.name))
+                _c("div", [
+                  _c("h5", { staticClass: "card-title" }, [
+                    _vm._v(_vm._s(product.name))
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c(
+                      "p",
+                      { staticClass: "card-subtitle flex-auto float-left" },
+                      [
+                        _vm._v(
+                          _vm._s(_vm.categories[product.category_id]) +
+                            " / " +
+                            _vm._s(product.subcategory)
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "p",
+                      { staticClass: "card-subtitle flex-auto float-right" },
+                      [_vm._v(_vm._s(product.price) + " $")]
+                    )
+                  ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "mb-4" }, [
-                  _c(
-                    "p",
-                    { staticClass: "card-subtitle flex-auto float-left" },
-                    [
-                      _vm._v(
-                        _vm._s(_vm.categories[product.category_id]) +
-                          " / " +
-                          _vm._s(product.subcategory)
-                      )
-                    ]
-                  ),
+                _c("div", [
+                  _c("p", { staticClass: "card-text" }, [
+                    _vm._v(_vm._s(product.description))
+                  ]),
                   _vm._v(" "),
                   _c(
-                    "p",
-                    { staticClass: "card-subtitle flex-auto float-right" },
-                    [_vm._v(_vm._s(product.price) + "$")]
+                    "a",
+                    {
+                      staticClass: "btn btn-primary float-right",
+                      attrs: {
+                        href: "../product/" + product.id,
+                        target: "_blank"
+                      }
+                    },
+                    [_vm._v("Go")]
                   )
-                ]),
-                _vm._v(" "),
-                _c(
-                  "p",
-                  {
-                    staticClass: "card-text mt-5",
-                    staticStyle: { "font-size": "0.9rem" }
-                  },
-                  [_vm._v(_vm._s(product.description))]
-                ),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "btn btn-primary float-right",
-                    attrs: { href: "../api/products/" + product.id }
-                  },
-                  [_vm._v("Go")]
-                )
+                ])
               ])
             ])
           ]
