@@ -65,6 +65,7 @@ class ProductJobController extends Controller {
         return $product;
     }
 
+    // Returns the View of a single product
     public function display($id = 1) {
         $product = (new ProductController())->show($id);
 
