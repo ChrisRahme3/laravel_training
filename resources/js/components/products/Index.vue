@@ -2,29 +2,15 @@
     <div>
         <div id="products-grid" class="row">
             <div v-for="product in products" :key="product.id" class="card-container col-sm-3">
-                <div class="card">
-                    <div class="card-body">
-                        <div>
-                            <h5 class="card-title">{{ product.name }}</h5>
-                            
-                            <div>
-                                <p class="card-subtitle flex-auto float-left" >{{ categories[product.category_id] }} / {{ product.subcategory }}</p>
-                                <p class="card-subtitle flex-auto float-right">{{ product.price }} $</p>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <p class="card-text">{{ product.description }}</p>
-                            <a :href="`/product/${product.id}`" class="btn btn-primary float-right" target="_blank">Go</a>
-                        </div>
-                    </div>
-                </div>
+                <Card :product="product" :category="categories[product.category_id]"/>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import Card from './Card';
+
 export default {
     data() {
         return {
@@ -69,10 +55,10 @@ export default {
                 console.log(error);
             })
         }
+    },
+
+    components: {
+        Card
     }
 }
 </script>
-
-<style>
-
-</style>
