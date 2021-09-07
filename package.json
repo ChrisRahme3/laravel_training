@@ -28,6 +28,7 @@
     },
     "dependencies": {
         "vue-async-computed": "^3.9.0",
-        "vue-router": "^3.5.2"
+        "vue-router": "^3.5.2",
+        "vuex": "^4.0.2"
     }
 }
