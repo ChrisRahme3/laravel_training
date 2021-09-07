@@ -20,12 +20,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resources([
-    'api/categories' => CategoryController::class,
-    'api/products'   => ProductController::class,
-    //'product'        => ProductJobController::class
-]);
-
 Route::get('/products', function () {
     return view('products.index_vue');
 });
