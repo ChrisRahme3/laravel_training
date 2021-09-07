@@ -27,6 +27,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "vue-async-computed": "^3.9.0",
         "vue-router": "^3.5.2"
     }
 }
