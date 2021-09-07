@@ -67,8 +67,7 @@
             <!-- Main Content -->
             <div id="content" style="background-color: white">
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <!-- Topbar Search -->
+                <!--<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search..." aria-label="Search" aria-describedby="basic-addon2">
@@ -79,7 +78,9 @@
                             </div>
                         </div>
                     </form>
-                </nav>
+                </nav>-->
+
+                <br>
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
