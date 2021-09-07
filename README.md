@@ -15,7 +15,7 @@ Furthermore, there should be a 2nd endpoint which returns the products in JSON f
 Provide a mini-interface using:
 
 1. Vue 3 ([task2-vue](https://github.com/ChrisRahme3/laravel_training/tree/task2-vue))
-2. Laravel ([task2-laravel](https://github.com/ChrisRahme3/laravel_training/tree/task2-laravel))
+2. Laravel ([task2-laravel](https://github.com/ChrisRahme3/laravel_training/tree/task2-laravel)) (Includes some changes on `1`)
 3. TypeScript, Nuxt, Vuex, Mixins, Filters
 
 ## Laravel Dusk  - Task 3
