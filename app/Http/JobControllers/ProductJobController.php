@@ -38,33 +38,6 @@ class ProductJobController extends Controller {
         }
     }
 
-    // Used to insert and update
-    static public function fill(Request $request, Product $product) {
-        $request->validate([
-            'code'        => 'required',
-            'name'        => 'required|max:128',
-            //'description' => ,
-            //'features'    => ,
-            'price'       => 'required',
-            //'keywords'    => ,
-            //'url'         => ,
-            'category_id' => 'required',
-            'subcategory' => 'max:32'
-        ]);
-        
-        $product->code        = $request->code;
-        $product->name        = $request->name;
-        $product->description = $request->description;
-        $product->features    = $request->features;
-        $product->price       = $request->price;
-        $product->keywords    = $request->keywords;
-        $product->url         = $request->url;
-        $product->category_id = $request->category_id;
-        $product->subcategory = $request->subcategory;
-        
-        return $product;
-    }
-
     // Returns the View of a single product
     public function display($id = 1) {
         $product = (new ProductController())->show($id);

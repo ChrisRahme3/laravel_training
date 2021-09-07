@@ -22,15 +22,4 @@ class CategoryJobController extends Controller {
             ));
         }
     }
-
-    // Used to insert and update
-    static public function fill(Request $request, Category $category) {
-        $request->validate([
-            'name' => 'required|max:32'
-        ]);
-
-        $category->name = $request->name;
-        
-        return $category;
-    }
 }
