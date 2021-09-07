@@ -37655,11 +37655,7 @@ var render = function() {
       _vm._l(_vm.products, function(product) {
         return _c(
           "div",
-          {
-            key: product.id,
-            staticClass: "col-sm-3",
-            staticStyle: { "padding-bottom": "30px" }
-          },
+          { key: product.id, staticClass: "card-container col-sm-3" },
           [
             _c("div", { staticClass: "card" }, [
               _c("div", { staticClass: "card-body" }, [
@@ -37699,7 +37695,7 @@ var render = function() {
                     {
                       staticClass: "btn btn-primary float-right",
                       attrs: {
-                        href: "../product/" + product.id,
+                        href: "/product/" + product.id,
                         target: "_blank"
                       }
                     },

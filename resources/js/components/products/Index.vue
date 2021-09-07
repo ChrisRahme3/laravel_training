@@ -1,7 +1,7 @@
 <template>
     <div>
         <div id="products-grid" class="row">
-            <div v-for="product in products" :key="product.id" class="col-sm-3" style="padding-bottom: 30px">
+            <div v-for="product in products" :key="product.id" class="card-container col-sm-3">
                 <div class="card">
                     <div class="card-body">
                         <div>
@@ -15,7 +15,7 @@
                         
                         <div>
                             <p class="card-text">{{ product.description }}</p>
-                            <a :href="`../product/${product.id}`" class="btn btn-primary float-right" target="_blank">Go</a>
+                            <a :href="`/product/${product.id}`" class="btn btn-primary float-right" target="_blank">Go</a>
                         </div>
                     </div>
                 </div>
