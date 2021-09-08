@@ -4,7 +4,6 @@ window.Vue = require('vue').default;
 import 'es6-promise/auto' // Must be before Vuex
 import Vuex from 'vuex'
 import VueRouter from 'vue-router';
-//import { routes } from './routes';
 
 import ProductsIndex from './components/products/Index';
 import ProductsSingle from './components/products/Single';
@@ -16,6 +15,7 @@ Vue.component('products-index', require('./components/products/Index.vue').defau
 
 const router = new VueRouter({
     mode: 'history',
+
     routes: [
         {
             path: '/products/index_vue',
@@ -34,21 +34,27 @@ const store = new Vuex.Store({
     state () {
         return {
             card_count: 0,
+            show_product: false,
+            product: {},
             products: []
         }
     },
 
     mutations: {
         addCard(state) {
-            state.card_count++
+            state.card_count++;
         },
 
-        addProduct(state, product) {
-            state.products.push(product)
+        setProduct(state, product) {
+            state.product = product;
         },
 
         setProducts(state, products) {
-            state.products = products
+            state.products = products;
+        },
+
+        showProduct(state, show) { // show: Boolean
+            state.show_product = show;
         }
     }
 });

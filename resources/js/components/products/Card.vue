@@ -12,21 +12,38 @@
             
             <div>
                 <p class="card-text">{{ product.description }}</p>
-                <a :href="`/product/${product.id}`" class="btn btn-primary float-right">Go</a>
+                <button class="btn btn-primary float-right" v-on:click="setProduct">
+                    Inspect
+                </button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import Single from './Single.vue';
+
 export default {
     props: [
         'product', 'category'
     ],
 
     created() {
-        this.$store.commit('addCard')
-        console.log('Count: ' + this.$store.state.card_count)
+        this.$store.commit('addCard');
+    },
+
+    methods: {
+        setProduct() {
+            let product = this.product;
+            product.category = this.$props.category;
+
+            this.$store.commit('setProduct', this.$props.product);
+            this.$store.commit('showProduct', true);
+        }
+    },
+
+    components: {
+        Single
     }
 }
 </script>

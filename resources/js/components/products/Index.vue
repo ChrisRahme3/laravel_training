@@ -1,6 +1,8 @@
 <template>
     <div>
-        <div id="products-grid" class="row">
+        <Single v-if="this.$store.state.show_product"/>
+
+        <div id="products-grid" class="row" v-if="!this.$store.state.show_product">
             <div v-for="product in products" :key="product.id" class="card-container col-sm-3">
                 <Card :product="product" :category="categories[product.category_id]"/>
             </div>
@@ -9,13 +11,14 @@
 </template>
 
 <script>
+import Single from './Single.vue';
 import Card from './Card';
 
 export default {
     data() {
         return {
             categories: ['None'],
-            products: {},
+            products: {}
         }
     },
 
@@ -36,7 +39,7 @@ export default {
                 }));
             }).catch((error) => {
                 console.log(error);
-            })
+            });
         },
 
         getProducts() {
@@ -53,11 +56,22 @@ export default {
                 });
             }).catch((error) => {
                 console.log(error);
-            })
+            });
+        }
+    },
+
+    computed: {
+        cardCount() {
+            return this.$store.state.card_count;
+        },
+
+        allProducts() {
+            return this.$store.state.products;
         }
     },
 
     components: {
+        Single,
         Card
     }
 }
