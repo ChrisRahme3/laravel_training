@@ -2066,7 +2066,11 @@ Vue.filter('capitalizeCommas', function (value) {
     phrase = phrase.toString().trim();
 
     if (phrase) {
-      result = result + ', ' + capitalize(phrase);
+      if (result == '') {
+        result = capitalize(phrase);
+      } else {
+        result = result + ', ' + capitalize(phrase);
+      }
     }
   });
   return result;
