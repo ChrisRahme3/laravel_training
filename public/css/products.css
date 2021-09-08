@@ -17,8 +17,23 @@
 }
 
 /* Product Page */
+#product-page {
+    margin-bottom: 30px;
+}
+
+#product-page button.back {
+    margin-right: 15px;
+    border-radius: 0;
+    height: 100%;
+}
+
 #product-image {
     margin: 0 20px 0 0;
+}
+
+#product-image img {
+    min-width: 750px;
+    min-height: 500px;
 }
 
 #product-header {
