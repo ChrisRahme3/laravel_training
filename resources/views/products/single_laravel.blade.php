@@ -33,7 +33,7 @@
 
             <div id="product-info">
                 <div id="product-header">
-                    <h1>{{ $prodname }}</h2>
+                    <h1>{{ $prodname }}</h1>
                     <h2>{{ $prodprce }} $</h2>
                 </div>
 
