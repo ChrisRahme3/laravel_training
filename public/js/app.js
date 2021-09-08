@@ -2053,7 +2053,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 
 Vue.use(vuex__WEBPACK_IMPORTED_MODULE_3__.default);
 Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_4__.default);
-Vue.component('products-index', __webpack_require__(/*! ./components/products/Index.vue */ "./resources/js/components/products/Index.vue").default);
+Vue.component('products-index', _components_products_Index__WEBPACK_IMPORTED_MODULE_1__.default);
+Vue.component('products-single', _components_products_Single__WEBPACK_IMPORTED_MODULE_2__.default);
 Vue.filter('capitalizeWords', function (value) {
   if (!value) return '';
   return toTitle(value.toString());

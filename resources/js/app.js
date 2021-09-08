@@ -11,10 +11,8 @@ import ProductsSingle from './components/products/Single';
 Vue.use(Vuex);
 Vue.use(VueRouter);
 
-Vue.component(
-    'products-index',
-    require('./components/products/Index.vue').default
-);
+Vue.component('products-index', ProductsIndex);
+Vue.component('products-single', ProductsSingle);
 
 Vue.filter(
     'capitalizeWords',
