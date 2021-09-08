@@ -14,7 +14,7 @@
             <div id="product-info">
                 <div id="product-header">
                     <h1>{{ product.name }}</h1>
-                    <h2>{{ product.price }} $</h2>
+                    <h2>{{ product.price_mod }} $</h2>
                 </div>
 
                 <hr><br>
@@ -32,30 +32,19 @@
 </template>
 
 <script>
+import productMixin from '../../mixins/productMixin';
+
 export default {
-    computed: {
-        product() {
-            let obj = this.$store.state.product;
-
-            if ((obj.subcategory != obj.category) && (obj.subcategory != '')) {
-                obj.category_mod = obj.category + ' / ' + obj.subcategory;
-            } else {
-                obj.category_mod = obj.category;
-            }
-
-            obj.features_mod = obj.features.replaceAll('<p>', '').replaceAll('</p>', ', ').trim().slice(0, -1);
-            obj.keywords_mod = toTitle(obj.keywords);
-
-            return obj;
-        }
-    },
-
     methods: {
         unsetProduct() {
             this.$store.commit('setProduct', null)
             this.$store.commit('showProduct', false)
         }
     },
+
+    mixins: [
+        productMixin
+    ]
 }
 </script>
 
