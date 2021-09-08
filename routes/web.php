@@ -20,12 +20,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/products', function () {
-    return view('products.index_vue');
-});
+Route::get('/products', [
+    ProductJobController::class, 'index'
+]);
 
 Route::get('/product/{id}', [
-    ProductJobController::class, 'display'
+    ProductJobController::class, 'show'
 ]);
 
 Route::get('{any}', function() {

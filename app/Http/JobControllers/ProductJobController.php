@@ -16,10 +16,10 @@ class ProductJobController extends Controller {
     static public function importJson($path) {
         // Get the categories as array
         $categories_array = json_decode((new CategoryController())->index(), true);
-        
+
         // Get the products JSON file
         $products_array = json_decode(Storage::get($path), true)['products']['data']['items'];
-        
+
         // Replace the category with its ID in the products JSON
         for ($row_number = 0; $row_number < count($products_array); $row_number++) {
             $product = $products_array[$row_number];
@@ -28,7 +28,7 @@ class ProductJobController extends Controller {
             // Create `code` key and remove `id` (which will get auto-incremented)
             $product['code'] = $product['id'];
             unset($product['id']);
-            
+
             // Create `category_id` key and remove `category`
             $product['category_id'] = $category_id + 1;
             unset($product['category']);
@@ -38,8 +38,13 @@ class ProductJobController extends Controller {
         }
     }
 
+	// Returns the View of all products
+	public function index() {
+		return view('products.index_vue');
+	}
+
     // Returns the View of a single product
-    public function display($id = 1) {
+    public function show($id) {
         $product = (new ProductController())->show($id);
 
         return view('products.single_laravel', compact('product'));
