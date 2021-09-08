@@ -54,11 +54,6 @@ const router = new VueRouter({
             path: '/products/index_vue',
             name: 'ProductsIndex',
             component: ProductsIndex
-        },
-        {
-            path: '/products/single_vuex',
-            name: 'ProductsSingle',
-            component: ProductsSingle
         }
     ]
 });

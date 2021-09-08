@@ -1845,7 +1845,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Single_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Single.vue */ "./resources/js/components/products/Single.vue");
 //
 //
 //
@@ -1868,7 +1867,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['product', 'category'],
   created: function created() {
@@ -1881,9 +1879,6 @@ __webpack_require__.r(__webpack_exports__);
       this.$store.commit('setProduct', this.$props.product);
       this.$store.commit('showProduct', true);
     }
-  },
-  components: {
-    Single: _Single_vue__WEBPACK_IMPORTED_MODULE_0__.default
   }
 });
 
@@ -2082,10 +2077,6 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_4__.default({
     path: '/products/index_vue',
     name: 'ProductsIndex',
     component: _components_products_Index__WEBPACK_IMPORTED_MODULE_1__.default
-  }, {
-    path: '/products/single_vuex',
-    name: 'ProductsSingle',
-    component: _components_products_Single__WEBPACK_IMPORTED_MODULE_2__.default
   }]
 });
 var store = new vuex__WEBPACK_IMPORTED_MODULE_3__.default.Store({
