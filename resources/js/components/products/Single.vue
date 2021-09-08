@@ -12,7 +12,7 @@
             <div id="product-info">
                 <div id="product-header">
                     <h1>{{ product.name | capitalizeWords }}</h1>
-                    <h2>{{ product.price_mod }}</h2>
+                    <h2>{{ product.price | toPrice }}</h2>
                 </div>
 
                 <hr><br>
@@ -21,7 +21,7 @@
                     <h5>{{ product['description'] }}</h5>
                     <p><b>Category:</b> <a :href="'/api/categories/' + product.category_id">{{ product.category_mod | capitalizeWords }}</a></p>
                     <p><b>Features:</b> {{ product.features_mod | capitalizeCommas }}</p>
-                    <p><b>Keywords:</b> {{ product.keywords_mod | capitalizeCommas }}</p>
+                    <p><b>Keywords:</b> {{ product.keywords | capitalizeCommas }}</p>
                     <p><b>Product Code:</b> {{ product.code }}</p>
                 </div>
             </div>

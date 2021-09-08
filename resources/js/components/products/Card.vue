@@ -6,7 +6,7 @@
 
                 <div>
                     <p class="card-subtitle flex-auto float-left" >{{ category }} / {{ product.subcategory }}</p>
-                    <p class="card-subtitle flex-auto float-right">{{ product.price }} $</p>
+                    <p class="card-subtitle flex-auto float-right">{{ product.price | toPrice }}</p>
                 </div>
             </div>
 
@@ -32,8 +32,7 @@ export default {
 
     methods: {
         setProduct() {
-            let product = this.product;
-            product.category = this.$props.category;
+            this.$props.product.category = this.$props.category;
 
             this.$store.commit('setProduct', this.$props.product);
             this.$store.commit('showProduct', true);

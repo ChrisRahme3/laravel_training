@@ -1874,8 +1874,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     setProduct: function setProduct() {
-      var product = this.product;
-      product.category = this.$props.category;
+      this.$props.product.category = this.$props.category;
       this.$store.commit('setProduct', this.$props.product);
       this.$store.commit('showProduct', true);
     }
@@ -1954,9 +1953,6 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     cardCount: function cardCount() {
       return this.$store.state.card_count;
-    },
-    allProducts: function allProducts() {
-      return this.$store.state.products;
     }
   },
   components: {
@@ -2050,6 +2046,10 @@ Vue.use(vuex__WEBPACK_IMPORTED_MODULE_3__.default);
 Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_4__.default);
 Vue.component('products-index', _components_products_Index__WEBPACK_IMPORTED_MODULE_1__.default);
 Vue.component('products-single', _components_products_Single__WEBPACK_IMPORTED_MODULE_2__.default);
+Vue.filter('toPrice', function (value) {
+  if (!value) value = '0';
+  return value.toString() + ' $';
+});
 Vue.filter('capitalizeWords', function (value) {
   if (!value) return '';
   return toTitle(value.toString());
@@ -2084,8 +2084,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_3__.default.Store({
     return {
       card_count: 0,
       show_product: false,
-      product: {},
-      products: []
+      product: {}
     };
   },
   mutations: {
@@ -2094,9 +2093,6 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_3__.default.Store({
     },
     setProduct: function setProduct(state, product) {
       state.product = product;
-    },
-    setProducts: function setProducts(state, products) {
-      state.products = products;
     },
     showProduct: function showProduct(state, show) {
       // show: Boolean
@@ -2178,9 +2174,7 @@ __webpack_require__.r(__webpack_exports__);
         obj.category_mod = obj.category;
       }
 
-      obj.price_mod = obj.price + ' $';
       obj.features_mod = obj.features.replaceAll('<p>', '').replaceAll('</p>', ', ').trim().slice(0, -1);
-      obj.keywords_mod = obj.keywords;
       return obj;
     }
   }
@@ -39030,7 +39024,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("p", { staticClass: "card-subtitle flex-auto float-right" }, [
-            _vm._v(_vm._s(_vm.product.price) + " $")
+            _vm._v(_vm._s(_vm._f("toPrice")(_vm.product.price)))
           ])
         ])
       ]),
@@ -39162,7 +39156,7 @@ var render = function() {
               _vm._v(_vm._s(_vm._f("capitalizeWords")(_vm.product.name)))
             ]),
             _vm._v(" "),
-            _c("h2", [_vm._v(_vm._s(_vm.product.price_mod))])
+            _c("h2", [_vm._v(_vm._s(_vm._f("toPrice")(_vm.product.price)))])
           ]),
           _vm._v(" "),
           _c("hr"),
@@ -39198,8 +39192,7 @@ var render = function() {
             _c("p", [
               _c("b", [_vm._v("Keywords:")]),
               _vm._v(
-                " " +
-                  _vm._s(_vm._f("capitalizeCommas")(_vm.product.keywords_mod))
+                " " + _vm._s(_vm._f("capitalizeCommas")(_vm.product.keywords))
               )
             ]),
             _vm._v(" "),

@@ -15,6 +15,14 @@ Vue.component('products-index', ProductsIndex);
 Vue.component('products-single', ProductsSingle);
 
 Vue.filter(
+    'toPrice',
+    function (value) {
+        if (!value) value = '0';
+        return value.toString() + ' $';
+    }
+);
+
+Vue.filter(
     'capitalizeWords',
     function (value) {
         if (!value) return '';
@@ -64,7 +72,6 @@ const store = new Vuex.Store({
             card_count: 0,
             show_product: false,
             product: {},
-            products: []
         }
     },
 
@@ -75,10 +82,6 @@ const store = new Vuex.Store({
 
         setProduct(state, product) {
             state.product = product;
-        },
-
-        setProducts(state, products) {
-            state.products = products;
         },
 
         showProduct(state, show) { // show: Boolean
