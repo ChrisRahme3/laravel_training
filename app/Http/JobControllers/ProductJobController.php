@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProductController;
 use App\Models\Category;
 use App\Models\Product;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -15,7 +16,12 @@ class ProductJobController extends Controller {
     // Imports JSON file to database
     static public function importJson($path) {
         // Get the categories as array
-        $categories_array = json_decode((new CategoryController())->index(), true);
+        $categories_import = json_decode((new CategoryController())->index(), true);
+		$categories_array = [];
+
+		for ($row_number = 0; $row_number < count($categories_import); $row_number++) {
+			$categories_array[] = $categories_import[$row_number]['name'];
+		}
 
         // Get the products JSON file
         $products_array = json_decode(Storage::get($path), true)['products']['data']['items'];
@@ -33,7 +39,7 @@ class ProductJobController extends Controller {
             $product['category_id'] = $category_id + 1;
             unset($product['category']);
 
-            // Add product to database
+			// Add product to database
             DB::table('products')->insert(array($product));
         }
     }
