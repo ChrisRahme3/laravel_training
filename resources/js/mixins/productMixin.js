@@ -11,7 +11,7 @@ export default {
 
             obj.price_mod    = obj.price + ' $'
             obj.features_mod = obj.features.replaceAll('<p>', '').replaceAll('</p>', ', ').trim().slice(0, -1);
-            obj.keywords_mod = toTitle(obj.keywords);
+            obj.keywords_mod = obj.keywords;
 
             return obj;
         }

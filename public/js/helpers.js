@@ -7,6 +7,11 @@ function toTitle(str = '') {
     });
 }
 
+// Capitalize the first letter in `str`
+function capitalize(str = '') {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 // Truncate `str` to the last word before `n` characters if `cutLastWord` is false,
 // otherwise it will directly cut at the `n`th characters
 function truncate(str, n, cutLastWord = false, ellipsis = true) {
