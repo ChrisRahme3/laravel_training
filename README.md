@@ -85,7 +85,7 @@ The below files are placed in the `storage/app/public/json` folder.
 
    ```bat
    php artisan serve
-   npm run dev
+   npm run watch
    ```
 
 ## Endpoints Guide
