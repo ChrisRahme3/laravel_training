@@ -12,7 +12,7 @@
             
             <div>
                 <p class="card-text">{{ product.description }}</p>
-                <a :href="`/product/${product.id}`" class="btn btn-primary float-right" target="_blank">Go</a>
+                <a :href="`/product/${product.id}`" class="btn btn-primary float-right">Go</a>
             </div>
         </div>
     </div>
@@ -20,6 +20,13 @@
 
 <script>
 export default {
-    props: ['product', 'category']
+    props: [
+        'product', 'category'
+    ],
+
+    created() {
+        this.$store.commit('addCard')
+        console.log('Count: ' + this.$store.state.card_count)
+    }
 }
 </script>
