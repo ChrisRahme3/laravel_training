@@ -2015,8 +2015,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   methods: {
@@ -2056,6 +2054,23 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 Vue.use(vuex__WEBPACK_IMPORTED_MODULE_3__.default);
 Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_4__.default);
 Vue.component('products-index', __webpack_require__(/*! ./components/products/Index.vue */ "./resources/js/components/products/Index.vue").default);
+Vue.filter('capitalizeWords', function (value) {
+  if (!value) return '';
+  return toTitle(value.toString());
+});
+Vue.filter('capitalizeCommas', function (value) {
+  if (!value) return '';
+  var result = '';
+  var phrases = value.split(',');
+  phrases.forEach(function (phrase) {
+    phrase = phrase.toString().trim();
+
+    if (phrase) {
+      result = result + ', ' + capitalize(phrase);
+    }
+  });
+  return result;
+});
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_4__.default({
   mode: 'history',
   routes: [{
@@ -2169,7 +2184,7 @@ __webpack_require__.r(__webpack_exports__);
 
       obj.price_mod = obj.price + ' $';
       obj.features_mod = obj.features.replaceAll('<p>', '').replaceAll('</p>', ', ').trim().slice(0, -1);
-      obj.keywords_mod = toTitle(obj.keywords);
+      obj.keywords_mod = obj.keywords;
       return obj;
     }
   }
@@ -39123,31 +39138,35 @@ var render = function() {
       "div",
       { staticClass: "d-flex flex-row", attrs: { id: "product-page" } },
       [
-        _c("div", { staticClass: "d-flex flex-row" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-primary float-right back",
-              on: { click: _vm.unsetProduct }
-            },
-            [_c("i", { staticClass: "fas fa-angle-left" })]
-          ),
-          _vm._v(" "),
-          _c("div", { attrs: { id: "product-image" } }, [
+        _c(
+          "div",
+          { staticClass: "d-flex flex-row", attrs: { id: "product-image" } },
+          [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary float-right back",
+                on: { click: _vm.unsetProduct }
+              },
+              [_c("i", { staticClass: "fas fa-angle-left" })]
+            ),
+            _vm._v(" "),
             _c("img", {
               attrs: {
                 src: "https://via.placeholder.com/900x600",
                 alt: _vm.product.name
               }
             })
-          ])
-        ]),
+          ]
+        ),
         _vm._v(" "),
         _c("div", { attrs: { id: "product-info" } }, [
           _c("div", { attrs: { id: "product-header" } }, [
-            _c("h1", [_vm._v(_vm._s(_vm.product.name))]),
+            _c("h1", [
+              _vm._v(_vm._s(_vm._f("capitalizeWords")(_vm.product.name)))
+            ]),
             _vm._v(" "),
-            _c("h2", [_vm._v(_vm._s(_vm.product.price_mod) + " $")])
+            _c("h2", [_vm._v(_vm._s(_vm.product.price_mod))])
           ]),
           _vm._v(" "),
           _c("hr"),
@@ -39164,18 +39183,28 @@ var render = function() {
                 {
                   attrs: { href: "/api/categories/" + _vm.product.category_id }
                 },
-                [_vm._v(_vm._s(_vm.product.category_mod))]
+                [
+                  _vm._v(
+                    _vm._s(_vm._f("capitalizeWords")(_vm.product.category_mod))
+                  )
+                ]
               )
             ]),
             _vm._v(" "),
             _c("p", [
               _c("b", [_vm._v("Features:")]),
-              _vm._v(" " + _vm._s(_vm.product.features_mod))
+              _vm._v(
+                " " +
+                  _vm._s(_vm._f("capitalizeCommas")(_vm.product.features_mod))
+              )
             ]),
             _vm._v(" "),
             _c("p", [
               _c("b", [_vm._v("Keywords:")]),
-              _vm._v(" " + _vm._s(_vm.product.keywords_mod))
+              _vm._v(
+                " " +
+                  _vm._s(_vm._f("capitalizeCommas")(_vm.product.keywords_mod))
+              )
             ]),
             _vm._v(" "),
             _c("p", [

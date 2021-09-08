@@ -11,7 +11,38 @@ import ProductsSingle from './components/products/Single';
 Vue.use(Vuex);
 Vue.use(VueRouter);
 
-Vue.component('products-index', require('./components/products/Index.vue').default);
+Vue.component(
+    'products-index',
+    require('./components/products/Index.vue').default
+);
+
+Vue.filter(
+    'capitalizeWords',
+    function (value) {
+        if (!value) return '';
+        return toTitle(value.toString());
+    }
+);
+
+Vue.filter(
+    'capitalizeCommas',
+    function (value) {
+        if (!value) return '';
+
+        let result = '';
+        let phrases = value.split(',');
+
+        phrases.forEach(phrase => {
+            phrase = phrase.toString().trim();
+
+            if (phrase) {
+                result = result + ', ' + capitalize(phrase);
+            }
+        });
+
+        return result;
+    }
+)
 
 const router = new VueRouter({
     mode: 'history',
