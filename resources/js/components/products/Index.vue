@@ -63,10 +63,6 @@ export default {
     computed: {
         cardCount() {
             return this.$store.state.card_count;
-        },
-
-        allProducts() {
-            return this.$store.state.products;
         }
     },
 
