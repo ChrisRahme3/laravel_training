@@ -5,7 +5,7 @@
                 <h5 class="card-title">{{ product.name }}</h5>
 
                 <div>
-                    <p class="card-subtitle flex-auto float-left" >{{ category }} / {{ product.subcategory }}</p>
+                    <p class="card-subtitle flex-auto float-left" >{{ category + '|' + product.subcategory | completeCategory | capitalizeWords }}</p>
                     <p class="card-subtitle flex-auto float-right">{{ product.price | toPrice }}</p>
                 </div>
             </div>
@@ -27,7 +27,7 @@ export default {
     ],
 
     created() {
-        this.$store.commit('addCard');
+		this.$store.commit('addCard');
     },
 
     methods: {

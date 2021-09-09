@@ -23,6 +23,26 @@ Vue.filter(
 );
 
 Vue.filter(
+	'completeCategory',
+    function (value) {
+		if (!value) return '';
+        let result = '';
+
+		const cats        = value.split('|');
+		const category    = cats[0];
+		const subcategory = cats[1];
+
+		if ((subcategory != category) && (subcategory != '')) {
+			result = category + ' / ' + subcategory;
+		} else {
+			result = category;
+		}
+
+        return result;
+    }
+)
+
+Vue.filter(
     'capitalizeWords',
     function (value) {
         if (!value) return '';

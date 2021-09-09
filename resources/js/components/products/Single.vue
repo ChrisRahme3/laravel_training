@@ -19,7 +19,7 @@
 
                 <div id="product-description">
                     <h5>{{ product['description'] }}</h5>
-                    <p><b>Category:</b> <a :href="'/api/categories/' + product.category_id">{{ product.category_mod | capitalizeWords }}</a></p>
+                    <p><b>Category:</b> <a :href="'/api/categories/' + product.category_id">{{ product.category + '|' + product.subcategory | completeCategory | capitalizeWords }}</a></p>
                     <p><b>Features:</b> {{ product.features_mod | capitalizeCommas }}</p>
                     <p><b>Keywords:</b> {{ product.keywords | capitalizeCommas }}</p>
                     <p><b>Product Code:</b> {{ product.code }}</p>

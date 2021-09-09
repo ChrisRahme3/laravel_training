@@ -2050,6 +2050,21 @@ Vue.filter('toPrice', function (value) {
   if (!value) value = '0';
   return value.toString() + ' $';
 });
+Vue.filter('completeCategory', function (value) {
+  if (!value) return '';
+  var result = '';
+  var cats = value.split('|');
+  var category = cats[0];
+  var subcategory = cats[1];
+
+  if (subcategory != category && subcategory != '') {
+    result = category + ' / ' + subcategory;
+  } else {
+    result = category;
+  }
+
+  return result;
+});
 Vue.filter('capitalizeWords', function (value) {
   if (!value) return '';
   return toTitle(value.toString());
@@ -2166,14 +2181,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   computed: {
     product: function product() {
-      var obj = this.$store.state.product;
-
-      if (obj.subcategory != obj.category && obj.subcategory != '') {
-        obj.category_mod = obj.category + ' / ' + obj.subcategory;
-      } else {
-        obj.category_mod = obj.category;
-      }
-
       obj.features_mod = obj.features.replaceAll('<p>', '').replaceAll('</p>', ', ').trim().slice(0, -1);
       return obj;
     }
@@ -39019,7 +39026,13 @@ var render = function() {
         _c("div", [
           _c("p", { staticClass: "card-subtitle flex-auto float-left" }, [
             _vm._v(
-              _vm._s(_vm.category) + " / " + _vm._s(_vm.product.subcategory)
+              _vm._s(
+                _vm._f("capitalizeWords")(
+                  _vm._f("completeCategory")(
+                    _vm.category + "|" + _vm.product.subcategory
+                  )
+                )
+              )
             )
           ]),
           _vm._v(" "),
@@ -39179,7 +39192,13 @@ var render = function() {
                 },
                 [
                   _vm._v(
-                    _vm._s(_vm._f("capitalizeWords")(_vm.product.category_mod))
+                    _vm._s(
+                      _vm._f("capitalizeWords")(
+                        _vm._f("completeCategory")(
+                          _vm.product.category + "|" + _vm.product.subcategory
+                        )
+                      )
+                    )
                   )
                 ]
               )
