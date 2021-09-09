@@ -14,12 +14,35 @@ const mix = require('laravel-mix');
 mix.js(
         'resources/js/app.js',
         'public/js'
-    ).vue(
-    ).sass(
-        'resources/sass/app.scss',
-        'public/css'
-    ).postCss(
-        'resources/css/app.css',
-        'public/css',
-        [require("tailwindcss")]
-    );
+).vue(
+).sass(
+	'resources/sass/app.scss',
+	'public/css'
+).postCss(
+	'resources/css/app.css',
+	'public/css',
+	[require("tailwindcss")]
+).webpackConfig({
+    module: {
+      rules: [
+        {
+          test: /\.tsx?$/,
+          loader: "ts-loader",
+		  options: {
+				appendTsSuffixTo: [
+					/\.vue$/
+				]
+			},
+          exclude: /node_modules/
+        }
+      ]
+    },
+    resolve: {
+      	extensions: [
+			  "*",
+			  ".js", ".jsx",
+			  ".vue",
+			  ".ts", ".tsx"
+		]
+    }
+});

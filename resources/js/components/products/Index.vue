@@ -10,9 +10,10 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import Single from './Single.vue';
-import Card from './Card';
+import Card from './Card.vue';
+import axios from 'axios';
 
 export default {
     data() {
@@ -35,7 +36,7 @@ export default {
                 let data = response.data;
 
                 this.categories = this.categories.concat(Object.keys(data).map((key) => {
-                    return toTitle(data[key]['name']);
+                    return data[key]['name'];
                 }));
             }).catch((error) => {
                 console.log(error);

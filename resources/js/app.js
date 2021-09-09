@@ -1,5 +1,5 @@
 require('./bootstrap');
-
+require("./hello-world").helloWorld();
 window.Vue = require('vue').default;
 
 import 'es6-promise/auto' // Must be before Vuex
