@@ -117,10 +117,6 @@
     <!-- Bootstrap core JavaScript-->
     <script src="{{ mix('js/app.js') }}"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="{{ asset('js/sb-admin.min.js') }}"></script>
-    <script src="{{ asset('js/helpers.js') }}"></script>
 </body>
 
 </html>
