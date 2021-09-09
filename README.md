@@ -16,8 +16,9 @@ Provide a mini-interface using:
 
 1. Vue 3 ([task2-vue](https://github.com/ChrisRahme3/laravel_training/tree/task2-vue))
 2. Laravel ([task2-laravel](https://github.com/ChrisRahme3/laravel_training/tree/task2-laravel)) (Includes some changes on `1`)
-3. Vuex, Mixins, Filters ([task3-vuex](https://github.com/ChrisRahme3/laravel_training/tree/task2-laravel)) (Includes some changes on `2` and removed files)
-4. Nuxt, TypeScript
+3. Vuex, Mixins, Filters ([task2-vuex](https://github.com/ChrisRahme3/laravel_training/tree/task2-vuex)) (Includes some changes on `2`)
+4. TypeScript ([task2-typescript](https://github.com/ChrisRahme3/laravel_training/tree/task2-typescript)) (Includes some changes on `3`)
+5. Nuxt
 
 ## Laravel Dusk  - Task 3
 
