@@ -1,4 +1,4 @@
-export function helloWorld(): string {
+export function testTs(): string {
 	let message: string = 'Typescript enabled';
 
 	console.log(message);
