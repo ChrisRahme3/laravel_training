@@ -24,25 +24,25 @@ mix.js(
 	[require("tailwindcss")]
 ).webpackConfig({
     module: {
-      rules: [
-        {
-          test: /\.tsx?$/,
-          loader: "ts-loader",
-		  options: {
-				appendTsSuffixTo: [
-					/\.vue$/
-				]
-			},
-          exclude: /node_modules/
-        }
-      ]
+		rules: [
+			{
+			test: /\.tsx?$/,
+			loader: "ts-loader",
+			options: {
+					appendTsSuffixTo: [
+						/\.vue$/
+					]
+				},
+			exclude: /node_modules/
+			}
+		]
     },
     resolve: {
       	extensions: [
-			  "*",
-			  ".js", ".jsx",
-			  ".vue",
-			  ".ts", ".tsx"
+			"*",
+			".js", ".jsx",
+			".vue",
+			".ts", ".tsx"
 		]
-    }
+    },
 });
