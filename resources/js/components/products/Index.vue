@@ -2,7 +2,7 @@
     <div>
         <Single v-if="this.$store.state.show_product"/>
 
-        <div id="products-grid" class="row" v-if="!this.$store.state.show_product">
+        <div id="products-grid" class="row" v-else>
             <div v-for="product in products" :key="product.id" class="card-container col-sm-3">
                 <Card :product="product" :category="categories[product.category_id]"/>
             </div>

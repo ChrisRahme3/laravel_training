@@ -39210,10 +39210,9 @@ var render = function() {
   return _c(
     "div",
     [
-      this.$store.state.show_product ? _c("Single") : _vm._e(),
-      _vm._v(" "),
-      !this.$store.state.show_product
-        ? _c(
+      this.$store.state.show_product
+        ? _c("Single")
+        : _c(
             "div",
             { staticClass: "row", attrs: { id: "products-grid" } },
             _vm._l(_vm.products, function(product) {
@@ -39233,7 +39232,6 @@ var render = function() {
             }),
             0
           )
-        : _vm._e()
     ],
     1
   )
