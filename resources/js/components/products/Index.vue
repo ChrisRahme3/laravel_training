@@ -13,49 +13,51 @@
 <script lang="ts">
 import Single from './Single.vue';
 import Card from './Card.vue';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 export default {
-    data() {
-        return {
+    data(): object {
+		const ret : {categories: string[], products: object} = {
             categories: ['None'],
             products: {}
-        }
+        };
+
+        return ret;
     },
 
-    created() {
+    created(): void {
         this.getCategories();
         this.getProducts();
     },
 
     methods: {
-        getCategories() {
+        getCategories(): void {
             axios.get(
                 '/api/categories'
-            ).then((response) => {
-                let data = response.data;
+            ).then((response: AxiosResponse<any>) => {
+                let data: object = response.data;
 
                 this.categories = this.categories.concat(Object.keys(data).map((key) => {
                     return data[key]['name'];
                 }));
-            }).catch((error) => {
+            }).catch((error: any) => {
                 console.log(error);
             });
         },
 
-        getProducts() {
+        getProducts(): void {
             axios.get(
                 '/api/products'
-            ).then((response) => {
+            ).then((response: AxiosResponse<any>) => {
 				this.products = response.data;
-            }).catch((error) => {
+            }).catch((error: any) => {
                 console.log(error);
             });
         }
     },
 
     computed: {
-        cardCount() {
+        cardCount(): number {
             return this.$store.state.card_count;
         }
     },

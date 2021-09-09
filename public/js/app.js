@@ -1853,9 +1853,12 @@ exports.default = {
   },
   methods: {
     setProduct: function setProduct() {
-      this.$props.product.category = this.$props.category;
-      this.$store.commit('setProduct', this.$props.product);
-      this.$store.commit('showProduct', true);
+      var _category = this.$props.category;
+      var _product = this.$props.product;
+      var _show = true;
+      this.$props.product.category = _category;
+      this.$store.commit('setProduct', _product);
+      this.$store.commit('showProduct', _show);
     }
   }
 };
@@ -1883,10 +1886,11 @@ var axios_1 = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 exports.default = {
   data: function data() {
-    return {
+    var ret = {
       categories: ['None'],
       products: {}
     };
+    return ret;
   },
   created: function created() {
     this.getCategories();
@@ -1941,7 +1945,7 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var productMixin_1 = __webpack_require__(/*! ../../mixins/productMixin */ "./resources/js/mixins/productMixin.js");
+var productMixin_1 = __webpack_require__(/*! ../../mixins/productMixin */ "./resources/js/mixins/productMixin.ts");
 
 exports.default = {
   methods: {
@@ -1955,10 +1959,10 @@ exports.default = {
 
 /***/ }),
 
-/***/ "./resources/js/hello-world.ts":
-/*!*************************************!*\
-  !*** ./resources/js/hello-world.ts ***!
-  \*************************************/
+/***/ "./public/js/helpers.ts":
+/*!******************************!*\
+  !*** ./public/js/helpers.ts ***!
+  \******************************/
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -1967,15 +1971,234 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
-exports.helloWorld = void 0;
+exports.truncate = exports.capitalize = exports.toTitle = void 0; // Capitalize the first letter of every word in `str`
 
-function helloWorld() {
+function toTitle() {
+  var str = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+  return str.replace(/[^-\s]+/g, function (word) {
+    return word.replace(/^./, function (first) {
+      return first.toUpperCase();
+    });
+  });
+}
+
+exports.toTitle = toTitle; // Capitalize the first letter in `str`
+
+function capitalize() {
+  var str = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+exports.capitalize = capitalize; // Truncate `str` to the last word before `n` characters if `cutLastWord` is false,
+// otherwise it will directly cut at the `n`th characters
+
+function truncate(str, n) {
+  var cutLastWord = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+  var ellipsis = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
+
+  if (n <= 0) {
+    return '';
+  }
+
+  if (str.length <= n) {
+    return str;
+  }
+
+  n = ellipsis ? n - 3 : n;
+  var sub = str.substr(0, n - 1);
+  var text = cutLastWord ? sub : sub.substr(0, sub.lastIndexOf(" "));
+  return ellipsis ? text + "..." : text;
+}
+
+exports.truncate = truncate;
+;
+
+/***/ }),
+
+/***/ "./resources/js/mixins/productMixin.ts":
+/*!*********************************************!*\
+  !*** ./resources/js/mixins/productMixin.ts ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.default = {
+  computed: {
+    product: function product() {
+      var obj = this.$store.state.product;
+      obj['features_mod'] = obj['features'].replaceAll('<p>', '').replaceAll('</p>', ', ').trim().slice(0, -1);
+      return obj;
+    }
+  }
+};
+
+/***/ }),
+
+/***/ "./resources/js/ts-test.ts":
+/*!*********************************!*\
+  !*** ./resources/js/ts-test.ts ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.testTs = void 0;
+
+function testTs() {
   var message = 'Typescript enabled';
   console.log(message);
   return message;
 }
 
-exports.helloWorld = helloWorld;
+exports.testTs = testTs;
+
+/***/ }),
+
+/***/ "./resources/js/vue_tools/filters.ts":
+/*!*******************************************!*\
+  !*** ./resources/js/vue_tools/filters.ts ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.filters = void 0;
+
+var helpers_1 = __webpack_require__(/*! ../../../public/js/helpers */ "./public/js/helpers.ts");
+
+exports.filters = [{
+  name: 'toPrice',
+  func: function func(value) {
+    if (!value) value = 0;
+    return value.toString() + ' $';
+  }
+}, {
+  name: 'completeCategory',
+  func: function func(value) {
+    if (!value) return '';
+    var cats = value.split('|');
+    var category = cats[0];
+    var subcategory = cats[1];
+
+    if (subcategory.toLowerCase() != category.toLowerCase() && subcategory != '') {
+      value = category + ' / ' + subcategory;
+    } else {
+      value = category;
+    }
+
+    return value;
+  }
+}, {
+  name: 'capitalizeWords',
+  func: function func(value) {
+    if (!value) return '';
+    return (0, helpers_1.toTitle)(value.toString());
+  }
+}, {
+  name: 'capitalizeCommas',
+  func: function func(value) {
+    if (!value) return '';
+    var result = '';
+    var phrases = value.split(',');
+    phrases.forEach(function (phrase) {
+      phrase = phrase.toString().trim();
+
+      if (phrase) {
+        if (result == '') {
+          result = (0, helpers_1.capitalize)(phrase);
+        } else {
+          result = result + ', ' + (0, helpers_1.capitalize)(phrase);
+        }
+      }
+    });
+    return result;
+  }
+}, {
+  name: 'truncate',
+  func: function func(value) {
+    var amount = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 10;
+    if (!value) value = '';
+    return (0, helpers_1.truncate)(value, amount, false);
+    ;
+  }
+}];
+
+/***/ }),
+
+/***/ "./resources/js/vue_tools/router.ts":
+/*!******************************************!*\
+  !*** ./resources/js/vue_tools/router.ts ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.router = void 0;
+
+var Index_vue_1 = __webpack_require__(/*! ../components/products/Index.vue */ "./resources/js/components/products/Index.vue");
+
+exports.router = {
+  mode: 'history',
+  routes: [{
+    path: '/products/index_vue',
+    name: 'ProductsIndex',
+    component: Index_vue_1["default"]
+  }]
+};
+
+/***/ }),
+
+/***/ "./resources/js/vue_tools/store.ts":
+/*!*****************************************!*\
+  !*** ./resources/js/vue_tools/store.ts ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.store = void 0;
+exports.store = {
+  state: function state() {
+    var ret = {
+      card_count: 0,
+      show_product: false,
+      product: {}
+    };
+    return ret;
+  },
+  mutations: {
+    addCard: function addCard(state) {
+      state['card_count']++;
+    },
+    setProduct: function setProduct(state, product) {
+      state['product'] = product;
+    },
+    showProduct: function showProduct(state, show) {
+      state['show_product'] = show;
+    }
+  }
+};
 
 /***/ }),
 
@@ -1987,15 +2210,23 @@ exports.helloWorld = helloWorld;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var es6_promise_auto__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! es6-promise/auto */ "./node_modules/es6-promise/auto.js");
-/* harmony import */ var es6_promise_auto__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(es6_promise_auto__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _components_products_Index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/products/Index */ "./resources/js/components/products/Index.vue");
-/* harmony import */ var _components_products_Single__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/products/Single */ "./resources/js/components/products/Single.vue");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var es6_promise_auto__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! es6-promise/auto */ "./node_modules/es6-promise/auto.js");
+/* harmony import */ var es6_promise_auto__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(es6_promise_auto__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var _components_products_Index_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/products/Index.vue */ "./resources/js/components/products/Index.vue");
+/* harmony import */ var _components_products_Single_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/products/Single.vue */ "./resources/js/components/products/Single.vue");
+__webpack_require__(/*! ./ts-test */ "./resources/js/ts-test.ts").testTs();
+
+
+window['jQuery'] = (jquery__WEBPACK_IMPORTED_MODULE_0___default());
+window['$'] = (jquery__WEBPACK_IMPORTED_MODULE_0___default());
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-__webpack_require__(/*! ./hello-world */ "./resources/js/hello-world.ts").helloWorld();
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js").default;
  // Must be before Vuex
@@ -2004,91 +2235,28 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 
 
 
-Vue.use(vuex__WEBPACK_IMPORTED_MODULE_3__.default);
-Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_4__.default); // Components
 
-Vue.component('products-index', _components_products_Index__WEBPACK_IMPORTED_MODULE_1__.default);
-Vue.component('products-single', _components_products_Single__WEBPACK_IMPORTED_MODULE_2__.default); // Filters
+var required_filters = __webpack_require__(/*! ./vue_tools/filters */ "./resources/js/vue_tools/filters.ts").filters;
 
-Vue.filter('toPrice', function (value) {
-  if (!value) value = '0';
-  return value.toString() + ' $';
-});
-Vue.filter('completeCategory', function (value) {
-  if (!value) return '';
-  var result = '';
-  var cats = value.split('|');
-  var category = cats[0];
-  var subcategory = cats[1];
+var required_router = __webpack_require__(/*! ./vue_tools/router */ "./resources/js/vue_tools/router.ts").router;
 
-  if (subcategory.toLowerCase() != category.toLowerCase() && subcategory != '') {
-    value = category + ' / ' + subcategory;
-  } else {
-    value = category;
-  }
+var required_store = __webpack_require__(/*! ./vue_tools/store */ "./resources/js/vue_tools/store.ts").store;
 
-  return value;
-});
-Vue.filter('capitalizeWords', function (value) {
-  if (!value) return '';
-  return toTitle(value.toString());
-});
-Vue.filter('capitalizeCommas', function (value) {
-  if (!value) return '';
-  var result = '';
-  var phrases = value.split(',');
-  phrases.forEach(function (phrase) {
-    phrase = phrase.toString().trim();
+vue__WEBPACK_IMPORTED_MODULE_4__.default.use(vuex__WEBPACK_IMPORTED_MODULE_5__.default);
+vue__WEBPACK_IMPORTED_MODULE_4__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_6__.default); // Components
 
-    if (phrase) {
-      if (result == '') {
-        result = capitalize(phrase);
-      } else {
-        result = result + ', ' + capitalize(phrase);
-      }
-    }
-  });
-  return result;
-});
-Vue.filter('truncate', function (value) {
-  var amount = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 10;
-  if (!value) value = '';
-  return truncate(value, amount, false);
-  ;
+vue__WEBPACK_IMPORTED_MODULE_4__.default.component('products-index', _components_products_Index_vue__WEBPACK_IMPORTED_MODULE_2__.default);
+vue__WEBPACK_IMPORTED_MODULE_4__.default.component('products-single', _components_products_Single_vue__WEBPACK_IMPORTED_MODULE_3__.default); // Filters
+
+required_filters.forEach(function (filter) {
+  vue__WEBPACK_IMPORTED_MODULE_4__.default.filter(filter['name'], filter['func']);
 }); // Router
 
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_4__.default({
-  mode: 'history',
-  routes: [{
-    path: '/products/index_vue',
-    name: 'ProductsIndex',
-    component: _components_products_Index__WEBPACK_IMPORTED_MODULE_1__.default
-  }]
-}); // Vuex
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_6__.default(required_router); // Vuex
 
-var store = new vuex__WEBPACK_IMPORTED_MODULE_3__.default.Store({
-  state: function state() {
-    return {
-      card_count: 0,
-      show_product: false,
-      product: {}
-    };
-  },
-  mutations: {
-    addCard: function addCard(state) {
-      state.card_count++;
-    },
-    setProduct: function setProduct(state, product) {
-      state.product = product;
-    },
-    showProduct: function showProduct(state, show) {
-      // show: Boolean
-      state.show_product = show;
-    }
-  }
-}); // Vue
+var store = new vuex__WEBPACK_IMPORTED_MODULE_5__.default.Store(required_store); // Vue
 
-var app = new Vue({
+var app = new vue__WEBPACK_IMPORTED_MODULE_4__.default({
   el: '#app',
   router: router,
   store: store
@@ -2137,29 +2305,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
-
-/***/ }),
-
-/***/ "./resources/js/mixins/productMixin.js":
-/*!*********************************************!*\
-  !*** ./resources/js/mixins/productMixin.js ***!
-  \*********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  computed: {
-    product: function product() {
-      var obj = this.$store.state.product;
-      obj.features_mod = obj.features.replaceAll('<p>', '').replaceAll('</p>', ', ').trim().slice(0, -1);
-      return obj;
-    }
-  }
-});
 
 /***/ }),
 

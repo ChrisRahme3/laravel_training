@@ -34,7 +34,7 @@ import productMixin from '../../mixins/productMixin';
 
 export default {
     methods: {
-        unsetProduct() {
+        unsetProduct() : void {
             this.$store.commit('setProduct', null)
             this.$store.commit('showProduct', false)
         }

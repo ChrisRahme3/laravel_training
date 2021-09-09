@@ -1,5 +1,12 @@
+require("./ts-test").testTs();
+
+import $ from 'jquery';
+window['jQuery'] = $;
+window['$'] = $;
+
 require('./bootstrap');
-require("./hello-world").helloWorld();
+
+import Vue from 'vue';
 window.Vue = require('vue').default;
 
 import 'es6-promise/auto' // Must be before Vuex
@@ -7,8 +14,13 @@ import 'es6-promise/auto' // Must be before Vuex
 import Vuex from 'vuex'
 import VueRouter from 'vue-router';
 
-import ProductsIndex from './components/products/Index';
-import ProductsSingle from './components/products/Single';
+import ProductsIndex from './components/products/Index.vue';
+import ProductsSingle from './components/products/Single.vue';
+
+const required_filters = require('./vue_tools/filters').filters;
+const required_router = require('./vue_tools/router').router;
+const required_store = require('./vue_tools/store').store;
+
 
 Vue.use(Vuex);
 Vue.use(VueRouter);
@@ -20,99 +32,17 @@ Vue.component('products-single', ProductsSingle);
 
 
 // Filters
-Vue.filter('toPrice', function (value) {
-	if (!value) value = '0';
-	return value.toString() + ' $';
-});
-
-Vue.filter('completeCategory', function (value) {
-	if (!value) return '';
-	let result = '';
-
-	const cats        = value.split('|');
-	const category    = cats[0];
-	const subcategory = cats[1];
-
-	if ((subcategory.toLowerCase() != category.toLowerCase()) && (subcategory != '')) {
-		value = category + ' / ' + subcategory;
-	} else {
-		value = category;
-	}
-
-	return value;
-});
-
-Vue.filter('capitalizeWords', function (value) {
-	if (!value) return '';
-	return toTitle(value.toString());
-});
-
-Vue.filter('capitalizeCommas', function (value) {
-	if (!value) return '';
-
-	let result = '';
-	let phrases = value.split(',');
-
-	phrases.forEach(phrase => {
-		phrase = phrase.toString().trim();
-
-		if (phrase) {
-			if (result == '') {
-				result = capitalize(phrase);
-			} else {
-				result = result + ', ' + capitalize(phrase);
-			}
-		}
-	});
-
-	return result;
-});
-
-Vue.filter('truncate', function (value, amount = 10) {
-	if (!value) value = '';
-
-	return truncate(value, amount, false);;
+required_filters.forEach(filter => {
+	Vue.filter(filter['name'], filter['func'])
 });
 
 
 // Router
-const router = new VueRouter({
-    mode: 'history',
-
-    routes: [
-        {
-            path: '/products/index_vue',
-            name: 'ProductsIndex',
-            component: ProductsIndex
-        }
-    ]
-});
+const router = new VueRouter(required_router);
 
 
 // Vuex
-const store = new Vuex.Store({
-    state () {
-        return {
-            card_count: 0,
-            show_product: false,
-            product: {},
-        }
-    },
-
-    mutations: {
-        addCard(state) {
-            state.card_count++;
-        },
-
-        setProduct(state, product) {
-            state.product = product;
-        },
-
-        showProduct(state, show) { // show: Boolean
-            state.show_product = show;
-        }
-    }
-});
+const store = new Vuex.Store(required_store);
 
 
 // Vue

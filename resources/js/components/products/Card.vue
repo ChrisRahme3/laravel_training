@@ -31,11 +31,15 @@ export default {
     },
 
     methods: {
-        setProduct() {
-            this.$props.product.category = this.$props.category;
+        setProduct() : void {
+			let _category : string = this.$props.category;
+			let _product : object = this.$props.product
+			let _show : boolean = true;
 
-            this.$store.commit('setProduct', this.$props.product);
-            this.$store.commit('showProduct', true);
+            this.$props.product.category = _category;
+
+            this.$store.commit('setProduct', _product);
+            this.$store.commit('showProduct', _show);
         }
     }
 }
