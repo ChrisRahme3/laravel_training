@@ -1,7 +1,9 @@
 require('./bootstrap');
 
 window.Vue = require('vue').default;
+
 import 'es6-promise/auto' // Must be before Vuex
+
 import Vuex from 'vuex'
 import VueRouter from 'vue-router';
 
@@ -11,69 +13,63 @@ import ProductsSingle from './components/products/Single';
 Vue.use(Vuex);
 Vue.use(VueRouter);
 
+
+// Components
 Vue.component('products-index', ProductsIndex);
 Vue.component('products-single', ProductsSingle);
 
-Vue.filter(
-    'toPrice',
-    function (value) {
-        if (!value) value = '0';
-        return value.toString() + ' $';
-    }
-);
 
-Vue.filter(
-	'completeCategory',
-    function (value) {
-		if (!value) return '';
-        let result = '';
+// Filters
+Vue.filter('toPrice', function (value) {
+	if (!value) value = '0';
+	return value.toString() + ' $';
+});
 
-		const cats        = value.split('|');
-		const category    = cats[0];
-		const subcategory = cats[1];
+Vue.filter('completeCategory', function (value) {
+	if (!value) return '';
+	let result = '';
 
-		if ((subcategory != category) && (subcategory != '')) {
-			result = category + ' / ' + subcategory;
-		} else {
-			result = category;
+	const cats        = value.split('|');
+	const category    = cats[0];
+	const subcategory = cats[1];
+
+	if ((subcategory != category) && (subcategory != '')) {
+		result = category + ' / ' + subcategory;
+	} else {
+		result = category;
+	}
+
+	return result;
+});
+
+Vue.filter('capitalizeWords', function (value) {
+	if (!value) return '';
+	return toTitle(value.toString());
+});
+
+Vue.filter('capitalizeCommas', function (value) {
+	if (!value) return '';
+
+	let result = '';
+	let phrases = value.split(',');
+
+	phrases.forEach(phrase => {
+		phrase = phrase.toString().trim();
+
+		if (phrase) {
+			if (result == '') {
+				result = capitalize(phrase);
+			} else {
+				result = result + ', ' + capitalize(phrase);
+			}
 		}
+	});
 
-        return result;
-    }
-)
+	return result;
+});
 
-Vue.filter(
-    'capitalizeWords',
-    function (value) {
-        if (!value) return '';
-        return toTitle(value.toString());
-    }
-);
 
-Vue.filter(
-    'capitalizeCommas',
-    function (value) {
-        if (!value) return '';
-
-        let result = '';
-        let phrases = value.split(',');
-
-        phrases.forEach(phrase => {
-            phrase = phrase.toString().trim();
-
-            if (phrase) {
-				if (result == '') {
-					result = capitalize(phrase);
-				} else {
-					result = result + ', ' + capitalize(phrase);
-				}
-            }
-        });
-
-        return result;
-    }
-)
-
+// Router
 const router = new VueRouter({
     mode: 'history',
 
@@ -86,6 +82,8 @@ const router = new VueRouter({
     ]
 });
 
+
+// Vuex
 const store = new Vuex.Store({
     state () {
         return {
@@ -110,6 +108,8 @@ const store = new Vuex.Store({
     }
 });
 
+
+// Vue
 const app = new Vue({
     el: '#app',
     router: router,
