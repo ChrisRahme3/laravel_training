@@ -39153,7 +39153,11 @@ var render = function() {
         _c("div", { attrs: { id: "product-info" } }, [
           _c("div", { attrs: { id: "product-header" } }, [
             _c("h1", [
-              _vm._v(_vm._s(_vm._f("capitalizeWords")(_vm.product.name)))
+              _c(
+                "a",
+                { attrs: { href: "/product/" + _vm.product.category_id } },
+                [_vm._v(_vm._s(_vm._f("capitalizeWords")(_vm.product.name)))]
+              )
             ]),
             _vm._v(" "),
             _c("h2", [_vm._v(_vm._s(_vm._f("toPrice")(_vm.product.price)))])

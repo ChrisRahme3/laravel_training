@@ -11,7 +11,7 @@
 
             <div id="product-info">
                 <div id="product-header">
-                    <h1>{{ product.name | capitalizeWords }}</h1>
+                    <h1><a :href="'/product/' + product.category_id">{{ product.name | capitalizeWords }}</a></h1>
                     <h2>{{ product.price | toPrice }}</h2>
                 </div>
 
