@@ -18,11 +18,11 @@ function truncate(str, n, cutLastWord = false, ellipsis = true) {
     if (n <= 0) {
         return '';
     }
-    
+
     if (str.length <= n) {
         return str;
     }
-    
+
     n = ellipsis ? n - 3 : n;
 
     const sub  = str.substr(0, n - 1);
