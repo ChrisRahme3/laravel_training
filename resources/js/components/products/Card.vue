@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-body">
             <div>
-                <h5 class="card-title">{{ product.name }}</h5>
+                <h5 class="card-title">{{ product.name | truncate(60) }}</h5>
 
                 <div>
                     <p class="card-subtitle flex-auto float-left" >{{ category + '|' + product.subcategory | completeCategory | capitalizeWords }}</p>
@@ -11,7 +11,7 @@
             </div>
 
             <div>
-                <p class="card-text">{{ product.description }}</p>
+                <p class="card-text">{{ product.description | truncate(80) }}</p>
                 <button class="btn btn-primary float-right" v-on:click="setProduct">
                     Inspect
                 </button>

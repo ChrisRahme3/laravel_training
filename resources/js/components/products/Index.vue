@@ -46,14 +46,7 @@ export default {
             axios.get(
                 '/api/products'
             ).then((response) => {
-                let data = response.data;
-
-                this.products = Object.keys(data).map((key) => {
-                    data[key]['name']        = truncate(data[key]['name'], 60, false);
-                    data[key]['description'] = truncate(data[key]['description'], 100, false);
-                    data[key]['subcategory'] = toTitle(data[key]['subcategory']);
-                    return data[key];
-                });
+				this.products = response.data;
             }).catch((error) => {
                 console.log(error);
             });

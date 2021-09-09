@@ -33,13 +33,13 @@ Vue.filter('completeCategory', function (value) {
 	const category    = cats[0];
 	const subcategory = cats[1];
 
-	if ((subcategory != category) && (subcategory != '')) {
-		result = category + ' / ' + subcategory;
+	if ((subcategory.toLowerCase() != category.toLowerCase()) && (subcategory != '')) {
+		value = category + ' / ' + subcategory;
 	} else {
-		result = category;
+		value = category;
 	}
 
-	return result;
+	return value;
 });
 
 Vue.filter('capitalizeWords', function (value) {
@@ -66,6 +66,12 @@ Vue.filter('capitalizeCommas', function (value) {
 	});
 
 	return result;
+});
+
+Vue.filter('truncate', function (value, amount = 10) {
+	if (!value) value = '';
+
+	return truncate(value, amount, false);;
 });
 
 

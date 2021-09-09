@@ -1938,13 +1938,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.get('/api/products').then(function (response) {
-        var data = response.data;
-        _this2.products = Object.keys(data).map(function (key) {
-          data[key]['name'] = truncate(data[key]['name'], 60, false);
-          data[key]['description'] = truncate(data[key]['description'], 100, false);
-          data[key]['subcategory'] = toTitle(data[key]['subcategory']);
-          return data[key];
-        });
+        _this2.products = response.data;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -2059,13 +2053,13 @@ Vue.filter('completeCategory', function (value) {
   var category = cats[0];
   var subcategory = cats[1];
 
-  if (subcategory != category && subcategory != '') {
-    result = category + ' / ' + subcategory;
+  if (subcategory.toLowerCase() != category.toLowerCase() && subcategory != '') {
+    value = category + ' / ' + subcategory;
   } else {
-    result = category;
+    value = category;
   }
 
-  return result;
+  return value;
 });
 Vue.filter('capitalizeWords', function (value) {
   if (!value) return '';
@@ -2087,6 +2081,12 @@ Vue.filter('capitalizeCommas', function (value) {
     }
   });
   return result;
+});
+Vue.filter('truncate', function (value) {
+  var amount = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 10;
+  if (!value) value = '';
+  return truncate(value, amount, false);
+  ;
 }); // Router
 
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_4__.default({
@@ -2186,6 +2186,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   computed: {
     product: function product() {
+      var obj = this.$store.state.product;
       obj.features_mod = obj.features.replaceAll('<p>', '').replaceAll('</p>', ', ').trim().slice(0, -1);
       return obj;
     }
@@ -39025,7 +39026,7 @@ var render = function() {
     _c("div", { staticClass: "card-body" }, [
       _c("div", [
         _c("h5", { staticClass: "card-title" }, [
-          _vm._v(_vm._s(_vm.product.name))
+          _vm._v(_vm._s(_vm._f("truncate")(_vm.product.name, 60)))
         ]),
         _vm._v(" "),
         _c("div", [
@@ -39049,7 +39050,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", [
         _c("p", { staticClass: "card-text" }, [
-          _vm._v(_vm._s(_vm.product.description))
+          _vm._v(_vm._s(_vm._f("truncate")(_vm.product.description, 80)))
         ]),
         _vm._v(" "),
         _c(
