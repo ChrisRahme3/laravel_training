@@ -64,7 +64,6 @@ The below files are placed in the `storage/app/public/json` folder.
    composer require "laravel/ui"
    php artisan ui vue
    npm install
-   npm install vue-router
    ```
 
 1. Create the MySQL database which will be used in the project
