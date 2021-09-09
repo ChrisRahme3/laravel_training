@@ -34,12 +34,11 @@ export default {
         setProduct() : void {
 			let _category : string = this.$props.category;
 			let _product : object = this.$props.product
-			let _show : boolean = true;
 
             this.$props.product.category = _category;
 
             this.$store.commit('setProduct', _product);
-            this.$store.commit('showProduct', _show);
+            this.$store.commit('showProduct', true);
         }
     }
 }

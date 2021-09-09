@@ -1855,10 +1855,9 @@ exports.default = {
     setProduct: function setProduct() {
       var _category = this.$props.category;
       var _product = this.$props.product;
-      var _show = true;
       this.$props.product.category = _category;
       this.$store.commit('setProduct', _product);
-      this.$store.commit('showProduct', _show);
+      this.$store.commit('showProduct', true);
     }
   }
 };
