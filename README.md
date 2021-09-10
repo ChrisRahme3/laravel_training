@@ -81,7 +81,7 @@ The below files are placed in the `storage/app/public/json` folder.
    php artisan migrate:fresh --seed
    ```
 
-1. Run Laravel and Node locally - Project will start on port 8000
+1. Run Laravel and Node locally - Project will start on port 8000 (unless otherwise mentioned by Artisan)
 
    ```bat
    php artisan serve
