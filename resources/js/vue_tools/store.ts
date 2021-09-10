@@ -32,8 +32,8 @@ export const store : object = {
 			if (!scroll) {
 				state['scroll'] = {x: 0, y: 0};
 			} else {
-				const x : number = scroll.hasOwnProperty('x') ? Math.round(100 * scroll['x']) / 100 : state['scroll']['x'];
-				const y : number = scroll.hasOwnProperty('y') ? Math.round(100 * scroll['y']) / 100 : state['scroll']['y'];
+				const x : number = scroll.hasOwnProperty('x') ? Math.round(scroll['x']) : state['scroll']['x'];
+				const y : number = scroll.hasOwnProperty('y') ? Math.round(scroll['y']) : state['scroll']['y'];
 				state['scroll'] = {x: x, y: y};
 			}
 		}

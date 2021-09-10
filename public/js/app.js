@@ -2272,8 +2272,8 @@ exports.store = {
           y: 0
         };
       } else {
-        var x = scroll.hasOwnProperty('x') ? Math.round(100 * scroll['x']) / 100 : state['scroll']['x'];
-        var y = scroll.hasOwnProperty('y') ? Math.round(100 * scroll['y']) / 100 : state['scroll']['y'];
+        var x = scroll.hasOwnProperty('x') ? Math.round(scroll['x']) : state['scroll']['x'];
+        var y = scroll.hasOwnProperty('y') ? Math.round(scroll['y']) : state['scroll']['y'];
         state['scroll'] = {
           x: x,
           y: y
