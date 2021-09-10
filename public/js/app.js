@@ -2080,7 +2080,6 @@ exports.default = {
           top: y,
           behavior: 'smooth'
         });
-        console.log('Scroll to:', x, y);
       }, 200);
     },
     scrollToX: function scrollToX(x) {

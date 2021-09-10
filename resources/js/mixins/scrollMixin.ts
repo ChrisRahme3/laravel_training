@@ -3,7 +3,6 @@ export default {
 		scrollTo(x : number, y : number) {
 			setTimeout(() => {
 				window.scroll({left: x, top: y, behavior: 'smooth'});
-				console.log('Scroll to:', x, y)
 			}, 200);
 		},
 
