@@ -12,7 +12,7 @@ export const filters : {name: string, func: Function}[] = [
 
 	{
 		name: 'completeCategory',
-		func: function (value: string) : string {
+		func: function (value : string) : string {
 			if (!value) return '';
 
 			const cats : string[]      = value.split('|');
