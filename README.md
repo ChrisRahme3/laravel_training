@@ -98,4 +98,4 @@ The below files are placed in the `storage/app/public/json` folder.
 
 - Pages
   - All products: `http://127.0.0.1:8000/products/index_vue`
-  - One product: `http://127.0.0.1:8000/product/1`
+  - One product: `http://127.0.0.1:8000/product/{id}`
