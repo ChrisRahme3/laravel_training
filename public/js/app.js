@@ -1855,20 +1855,25 @@ exports.default = {
     this.$store.commit('addCard');
   },
   methods: {
+    // This method executes on click on the "Inspect" button
     setProduct: function setProduct(event) {
+      // Get the Y position of the card that has been clicked on to get back to it after closing the Single component
       var cardElement = event['target'].parentElement.parentElement.parentElement; // .product-card element
 
       var _scrollPos = cardElement.getBoundingClientRect().top + window.scrollY; // Y position of the Card that was clicked
+      // Save information about the product that has been clicked on to show it in Single
 
 
       var _category = this.$props.category;
       var _product = this.$props.product;
-      this.$props.product.category = _category;
+      this.$props.product.category = _category; // Save the Y position of the card, hide Cards, and show Single
+
       this.$store.commit('setScroll', {
         y: _scrollPos
       });
       this.$store.commit('setProduct', _product);
-      this.$store.commit('showProduct', true);
+      this.$store.commit('showProduct', true); // Scroll back to the top of the page when displaying Single
+
       this.scrollToTop();
     }
   },
@@ -1964,10 +1969,13 @@ var scrollMixin_1 = __webpack_require__(/*! ../../mixins/scrollMixin */ "./resou
 
 exports.default = {
   methods: {
+    // This method executes on click on the "< button
     unsetProduct: function unsetProduct() {
+      // Tells the store to hide Single and show Cards
       this.$store.commit('setProduct', null);
-      this.$store.commit('showProduct', false);
-      var scroll = this.$store.state.scroll;
+      this.$store.commit('showProduct', false); // Get the scroll position of the Card that has been saved in the Store
+
+      var scroll = this.$store.state.scroll; // Scroll back to the corresponding Card
 
       if (scroll['y']) {
         this.scrollToY(scroll['y'] - 15);

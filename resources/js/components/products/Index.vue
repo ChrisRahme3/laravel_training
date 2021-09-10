@@ -1,5 +1,6 @@
 <template>
     <div id="products-index">
+		<!-- Only shows if a card has been clicked on -->
         <Single v-if="this.$store.state.show_product"/>
 
         <div id="products-grid" class="row" v-else>

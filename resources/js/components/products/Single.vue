@@ -35,12 +35,16 @@ import scrollMixin from '../../mixins/scrollMixin';
 
 export default {
 	methods: {
+		// This method executes on click on the "< button
         unsetProduct() : void {
+			// Tells the store to hide Single and show Cards
             this.$store.commit('setProduct', null)
             this.$store.commit('showProduct', false)
 
+			// Get the scroll position of the Card that has been saved in the Store
 			const scroll : {x : number, y : number} = this.$store.state.scroll;
 
+			// Scroll back to the corresponding Card
 			if (scroll['y']) {
 				this.scrollToY(scroll['y'] - 15);
 			}
