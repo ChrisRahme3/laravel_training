@@ -27,11 +27,11 @@ class CreateProductsTable extends Migration {
             //$table->string('category');
             $table->unsignedInteger('category_id');
             $table->string('subcategory', 32)->nullable();
-            
+
             //$table->foreign('category')->references('name')->on('categories')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
-        
+
         ProductJobController::importJson('./public/json/products.json');
     }
 
