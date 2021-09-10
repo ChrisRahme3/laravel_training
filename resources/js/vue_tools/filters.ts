@@ -65,9 +65,9 @@ export const filters : {name: string, func: Function}[] = [
 	{
 		name: 'truncate',
 		func: function (value : string, amount : number = 10) {
-			if (!value) value = '';
+			if (!value) return '';
 
-			return truncate(value, amount, false);;
+			return truncate(value, amount, false);
 		}
 	}
 ]

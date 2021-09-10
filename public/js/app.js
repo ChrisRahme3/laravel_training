@@ -2195,9 +2195,8 @@ exports.filters = [{
   name: 'truncate',
   func: function func(value) {
     var amount = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 10;
-    if (!value) value = '';
+    if (!value) return '';
     return (0, helpers_1.truncate)(value, amount, false);
-    ;
   }
 }];
 
