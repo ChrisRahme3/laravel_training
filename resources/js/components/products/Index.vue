@@ -16,8 +16,8 @@ import Card from './Card.vue';
 import axios, { AxiosResponse } from 'axios';
 
 export default {
-    data(): object {
-		const ret : {categories: string[], products: object} = {
+    data() : object {
+		const ret : {categories : string[], products : object} = {
             categories: ['None'],
             products: {}
         };
@@ -25,17 +25,19 @@ export default {
         return ret;
     },
 
-    created(): void {
+    created() : void {
+		this.$store.commit('setScroll', null);
+
         this.getCategories();
         this.getProducts();
     },
 
     methods: {
-        getCategories(): void {
+        getCategories() : void {
             axios.get(
                 '/api/categories'
-            ).then((response: AxiosResponse<any>) => {
-                let data: object = response.data;
+            ).then((response : AxiosResponse<any>) => {
+                let data : object = response.data;
 
                 this.categories = this.categories.concat(Object.keys(data).map((key) => {
                     return data[key]['name'];
@@ -45,19 +47,19 @@ export default {
             });
         },
 
-        getProducts(): void {
+        getProducts() : void {
             axios.get(
                 '/api/products'
-            ).then((response: AxiosResponse<any>) => {
+            ).then((response : AxiosResponse<any>) => {
 				this.products = response.data;
-            }).catch((error: any) => {
+            }).catch((error : any) => {
                 console.log(error);
             });
         }
     },
 
     computed: {
-        cardCount(): number {
+        cardCount() : number {
             return this.$store.state.card_count;
         }
     },

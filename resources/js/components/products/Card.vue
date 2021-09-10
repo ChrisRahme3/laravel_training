@@ -21,6 +21,8 @@
 </template>
 
 <script lang="ts">
+import scrollMixin from '../../mixins/scrollMixin';
+
 export default {
     props: [
         'product', 'category'
@@ -31,15 +33,25 @@ export default {
     },
 
     methods: {
-        setProduct() : void {
-			let _category : string = this.$props.category;
-			let _product : object = this.$props.product
+        setProduct(event) : void {
+			const cardElement = event['target'].parentElement.parentElement.parentElement // .card
+			const _scrollPos = cardElement.getBoundingClientRect().top + window.scrollY // Y position of the Card that was clicked
+
+			const _category : string = this.$props.category;
+			const _product : object = this.$props.product
 
             this.$props.product.category = _category;
 
+			this.$store.commit('setScroll', {y: _scrollPos})
             this.$store.commit('setProduct', _product);
             this.$store.commit('showProduct', true);
+
+			this.scrollToTop();
         }
-    }
+    },
+
+    mixins: [
+		scrollMixin
+    ]
 }
 </script>

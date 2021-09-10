@@ -1838,7 +1838,7 @@ module.exports = {
 /*!************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/ts-loader/index.js??clonedRuleSet-23[0].rules[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/products/Card.vue?vue&type=script&lang=ts& ***!
   \************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
@@ -1846,20 +1846,33 @@ module.exports = {
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
+
+var scrollMixin_1 = __webpack_require__(/*! ../../mixins/scrollMixin */ "./resources/js/mixins/scrollMixin.ts");
+
 exports.default = {
   props: ['product', 'category'],
   created: function created() {
     this.$store.commit('addCard');
   },
   methods: {
-    setProduct: function setProduct() {
+    setProduct: function setProduct(event) {
+      var cardElement = event['target'].parentElement.parentElement.parentElement; // .card
+
+      var _scrollPos = cardElement.getBoundingClientRect().top + window.scrollY; // Y position of the Card that was clicked
+
+
       var _category = this.$props.category;
       var _product = this.$props.product;
       this.$props.product.category = _category;
+      this.$store.commit('setScroll', {
+        y: _scrollPos
+      });
       this.$store.commit('setProduct', _product);
       this.$store.commit('showProduct', true);
+      this.scrollToTop();
     }
-  }
+  },
+  mixins: [scrollMixin_1["default"]]
 };
 
 /***/ }),
@@ -1892,6 +1905,7 @@ exports.default = {
     return ret;
   },
   created: function created() {
+    this.$store.commit('setScroll', null);
     this.getCategories();
     this.getProducts();
   },
@@ -1946,14 +1960,21 @@ Object.defineProperty(exports, "__esModule", ({
 
 var productMixin_1 = __webpack_require__(/*! ../../mixins/productMixin */ "./resources/js/mixins/productMixin.ts");
 
+var scrollMixin_1 = __webpack_require__(/*! ../../mixins/scrollMixin */ "./resources/js/mixins/scrollMixin.ts");
+
 exports.default = {
   methods: {
     unsetProduct: function unsetProduct() {
       this.$store.commit('setProduct', null);
       this.$store.commit('showProduct', false);
+      var scroll = this.$store.state.scroll;
+
+      if (scroll['y']) {
+        this.scrollToY(scroll['y'] - 15);
+      }
     }
   },
-  mixins: [productMixin_1["default"]]
+  mixins: [productMixin_1["default"], scrollMixin_1["default"]]
 };
 
 /***/ }),
@@ -2032,6 +2053,44 @@ exports.default = {
       var obj = this.$store.state.product;
       obj['features_mod'] = obj['features'].replaceAll('<p>', '').replaceAll('</p>', ', ').trim().slice(0, -1);
       return obj;
+    }
+  }
+};
+
+/***/ }),
+
+/***/ "./resources/js/mixins/scrollMixin.ts":
+/*!********************************************!*\
+  !*** ./resources/js/mixins/scrollMixin.ts ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.default = {
+  methods: {
+    scrollTo: function scrollTo(x, y) {
+      setTimeout(function () {
+        window.scroll({
+          left: x,
+          top: y,
+          behavior: 'smooth'
+        });
+        console.log('Scroll to:', x, y);
+      }, 200);
+    },
+    scrollToX: function scrollToX(x) {
+      this.scrollTo(x, 0);
+    },
+    scrollToY: function scrollToY(y) {
+      this.scrollTo(0, y);
+    },
+    scrollToTop: function scrollToTop() {
+      this.scrollToX(0);
     }
   }
 };
@@ -2182,7 +2241,11 @@ exports.store = {
     var ret = {
       card_count: 0,
       show_product: false,
-      product: {}
+      product: {},
+      scroll: {
+        x: 0,
+        y: 0
+      }
     };
     return ret;
   },
@@ -2195,6 +2258,21 @@ exports.store = {
     },
     showProduct: function showProduct(state, show) {
       state['show_product'] = show;
+    },
+    setScroll: function setScroll(state, scroll) {
+      if (!scroll) {
+        state['scroll'] = {
+          x: 0,
+          y: 0
+        };
+      } else {
+        var x = scroll.hasOwnProperty('x') ? Math.round(100 * scroll['x']) / 100 : state['scroll']['x'];
+        var y = scroll.hasOwnProperty('y') ? Math.round(100 * scroll['y']) / 100 : state['scroll']['y'];
+        state['scroll'] = {
+          x: x,
+          y: y
+        };
+      }
     }
   }
 };

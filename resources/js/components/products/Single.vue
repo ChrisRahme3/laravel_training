@@ -31,17 +31,25 @@
 
 <script lang="ts">
 import productMixin from '../../mixins/productMixin';
+import scrollMixin from '../../mixins/scrollMixin';
 
 export default {
-    methods: {
+	methods: {
         unsetProduct() : void {
             this.$store.commit('setProduct', null)
             this.$store.commit('showProduct', false)
+
+			const scroll : {x : number, y : number} = this.$store.state.scroll;
+
+			if (scroll['y']) {
+				this.scrollToY(scroll['y'] - 15);
+			}
         }
     },
 
     mixins: [
-        productMixin
+        productMixin,
+		scrollMixin
     ]
 }
 </script>

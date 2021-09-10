@@ -1,3 +1,7 @@
+body {
+	background-color: #FFFFFF;
+}
+
 #heading,
 #heading > h1 {
     width: 100%;
