@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <div :id="'product-card-' + product.id" class="product-card card">
         <div class="card-body">
             <div>
                 <h5 class="card-title">{{ product.name | truncate(60) }}</h5>
@@ -34,7 +34,7 @@ export default {
 
     methods: {
         setProduct(event) : void {
-			const cardElement = event['target'].parentElement.parentElement.parentElement // .card
+			const cardElement = event['target'].parentElement.parentElement.parentElement // .product-card element
 			const _scrollPos = cardElement.getBoundingClientRect().top + window.scrollY // Y position of the Card that was clicked
 
 			const _category : string = this.$props.category;

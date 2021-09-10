@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="products-index">
         <Single v-if="this.$store.state.show_product"/>
 
         <div id="products-grid" class="row" v-else>

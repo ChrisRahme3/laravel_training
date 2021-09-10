@@ -1856,7 +1856,7 @@ exports.default = {
   },
   methods: {
     setProduct: function setProduct(event) {
-      var cardElement = event['target'].parentElement.parentElement.parentElement; // .card
+      var cardElement = event['target'].parentElement.parentElement.parentElement; // .product-card element
 
       var _scrollPos = cardElement.getBoundingClientRect().top + window.scrollY; // Y position of the Card that was clicked
 
@@ -39217,48 +39217,55 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card" }, [
-    _c("div", { staticClass: "card-body" }, [
-      _c("div", [
-        _c("h5", { staticClass: "card-title" }, [
-          _vm._v(_vm._s(_vm._f("truncate")(_vm.product.name, 60)))
-        ]),
-        _vm._v(" "),
+  return _c(
+    "div",
+    {
+      staticClass: "product-card card",
+      attrs: { id: "product-card-" + _vm.product.id }
+    },
+    [
+      _c("div", { staticClass: "card-body" }, [
         _c("div", [
-          _c("p", { staticClass: "card-subtitle flex-auto float-left" }, [
-            _vm._v(
-              _vm._s(
-                _vm._f("capitalizeWords")(
-                  _vm._f("completeCategory")(
-                    _vm.category + "|" + _vm.product.subcategory
+          _c("h5", { staticClass: "card-title" }, [
+            _vm._v(_vm._s(_vm._f("truncate")(_vm.product.name, 60)))
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _c("p", { staticClass: "card-subtitle flex-auto float-left" }, [
+              _vm._v(
+                _vm._s(
+                  _vm._f("capitalizeWords")(
+                    _vm._f("completeCategory")(
+                      _vm.category + "|" + _vm.product.subcategory
+                    )
                   )
                 )
               )
-            )
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "card-subtitle flex-auto float-right" }, [
-            _vm._v(_vm._s(_vm._f("toPrice")(_vm.product.price)))
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "card-subtitle flex-auto float-right" }, [
+              _vm._v(_vm._s(_vm._f("toPrice")(_vm.product.price)))
+            ])
           ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _c("p", { staticClass: "card-text" }, [
-          _vm._v(_vm._s(_vm._f("truncate")(_vm.product.description, 80)))
         ]),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary float-right",
-            on: { click: _vm.setProduct }
-          },
-          [_vm._v("\n                Inspect\n            ")]
-        )
+        _c("div", [
+          _c("p", { staticClass: "card-text" }, [
+            _vm._v(_vm._s(_vm._f("truncate")(_vm.product.description, 80)))
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary float-right",
+              on: { click: _vm.setProduct }
+            },
+            [_vm._v("\n                Inspect\n            ")]
+          )
+        ])
       ])
-    ])
-  ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -39285,6 +39292,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { attrs: { id: "products-index" } },
     [
       this.$store.state.show_product
         ? _c("Single")
