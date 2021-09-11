@@ -59,11 +59,10 @@ The below files are placed in the `storage/app/public/json` folder.
    cd laravel_training
    ```
 
-1. Install Vue inside the project
+1. Install dependencies
 
    ```bat
-   composer require "laravel/ui"
-   php artisan ui vue
+   composer install
    npm install
    ```
 
