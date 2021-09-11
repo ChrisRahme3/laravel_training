@@ -52,13 +52,6 @@ The below files are placed in the `storage/app/public/json` folder.
    composer global require "laravel/installer=~1.1"
    ```
 
-1. Create project
-
-   ```bat
-   composer create-project --prefer-dist laravel/laravel laravel_training
-   cd laravel_training
-   ```
-
 1. Install dependencies
 
    ```bat
