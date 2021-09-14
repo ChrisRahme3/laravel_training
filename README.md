@@ -10,7 +10,7 @@ The data should be imported with the help with Eloquent to map the data to a SQL
 
 Furthermore, there should be a 2nd endpoint which returns the products in JSON format, retrieved through the database. Choose a JSON structure and data which you think is useful.
 
-## The View  - Task 2
+## The View - Task 2
 
 Provide a mini-interface using:
 
@@ -20,13 +20,13 @@ Provide a mini-interface using:
 4. TypeScript ([task2-typescript](https://github.com/ChrisRahme3/laravel_training/tree/task2-typescript)) (Includes some changes on `3`)
 5. Nuxt
 
-## Laravel Dusk  - Task 3
-
-To be discussed before starting.
-
-## Tests  - Task 4
+## Tests - Task 3
 
 Provide some useful tests, a functional, unit & browser test for both frontend and backend.
+
+## Laravel Dusk - Task 4
+
+To be discussed before starting.
 
 ---
 
