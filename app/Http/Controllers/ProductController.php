@@ -7,11 +7,11 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller {
-    public function index() {
+    static public function index() {
         return Product::all();
     }
- 
-    public function show($id) {
+
+    static public function show($id) {
         return Product::find($id);
     }
 }

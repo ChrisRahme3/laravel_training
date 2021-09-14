@@ -65,7 +65,7 @@ The below files are placed in the `storage/app/public/json` folder.
    CREATE DATABASE laravel_training;
    ```
 
-1. Rename `.env.example` to `.env` then verify the database information is correct in lines 10-15
+1. Rename `.env.example` to `.env` then verify the database information is correct in lines 10-16
 
 1. Generate your application encryption key
 
