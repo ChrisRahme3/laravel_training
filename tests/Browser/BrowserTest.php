@@ -54,20 +54,3 @@ class BrowserTest extends DuskTestCase {
         });
 	}
 }
-
-class BrowserTestTemp extends DuskTestCase {
-public function test_vue_index_product_page_card_button() {
-	$this->browse(function (Browser $bro) {
-		$product = Product::factory()->create();
-
-		$bro->visit('/products/index_vue/')
-			->pause(1000)
-			->click('#product-card-'.$product->id.' button')
-			->screenshot('test_vue_index_product_page_card_button')
-			->assertVisible('#product-single')
-			->assertNotPresent('#products-grid')
-			->assertSee('Category')
-			->assertSee($product->code);
-	});
-}
-}
