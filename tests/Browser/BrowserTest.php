@@ -48,9 +48,7 @@ class BrowserTest extends DuskTestCase {
 				->assertVisible('#product-single')
 				->assertNotPresent('#products-grid')
 				->assertSee('Category')
-				->assertSee($product->code)
-				->pause(1000)
-				->assertVue('product.name', $product->name);
+				->assertSee($product->code);
         });
 	}
 }
