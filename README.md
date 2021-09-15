@@ -44,9 +44,9 @@ The below files are placed in the `storage/app/public/json` folder.
 
 1. Install [Node.js](https://nodejs.org/en/download)
 
-1. Install [Composer](https://laravel.com/docs/4.2#install-composer)
+1. Install [Composer](https://getcomposer.org/Composer-Setup.exe)
 
-1. Install [Laravel](https://laravel.com/docs/4.2#install-laravel)
+1. Install [Laravel](https://laravel.com/docs/8.x#installation-via-composer)
 
    ```bat
    composer global require "laravel/installer=~1.1"
@@ -57,6 +57,12 @@ The below files are placed in the `storage/app/public/json` folder.
    ```bat
    composer install
    npm install
+   ```
+
+1. Install [Laravel Dusk](https://laravel.com/docs/8.x/dusk)
+
+   ```bat
+   php artisan dusk:install
    ```
 
 1. Create the MySQL database which will be used in the project
