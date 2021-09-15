@@ -20,6 +20,7 @@ class ProductFactory extends Factory {
      */
     public function definition() {
         return [
+			'code'        => $this->faker->text(10),
 			'name'        => $this->faker->text(50),
 			'description' => $this->faker->text(100),
 			'features'    => $this->faker->text(100),
