@@ -52,18 +52,10 @@ The below files are placed in the `storage/app/public/json` folder.
    composer global require "laravel/installer=~1.1"
    ```
 
-1. Create project
+1. Install dependencies
 
    ```bat
-   composer create-project --prefer-dist laravel/laravel laravel_training
-   cd laravel_training
-   ```
-
-1. Install Vue inside the project
-
-   ```bat
-   composer require "laravel/ui"
-   php artisan ui vue
+   composer install
    npm install
    ```
 
