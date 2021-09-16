@@ -10,7 +10,7 @@ The data should be imported with the help with Eloquent to map the data to a SQL
 
 Furthermore, there should be a 2nd endpoint which returns the products in JSON format, retrieved through the database. Choose a JSON structure and data which you think is useful.
 
-## The View  - Task 2
+## The View - Task 2
 
 Provide a mini-interface using:
 
@@ -20,13 +20,9 @@ Provide a mini-interface using:
 4. TypeScript ([task2-typescript](https://github.com/ChrisRahme3/laravel_training/tree/task2-typescript)) (Includes some changes on `3`)
 5. Nuxt
 
-## Laravel Dusk  - Task 3
+## Tests - Task 3
 
-To be discussed before starting.
-
-## Tests  - Task 4
-
-Provide some useful tests, a functional, unit & browser test for both frontend and backend.
+Provide unit, functional, and browser tests for both frontend and backend.
 
 ---
 
@@ -44,9 +40,9 @@ The below files are placed in the `storage/app/public/json` folder.
 
 1. Install [Node.js](https://nodejs.org/en/download)
 
-1. Install [Composer](https://laravel.com/docs/4.2#install-composer)
+1. Install [Composer](https://getcomposer.org/Composer-Setup.exe)
 
-1. Install [Laravel](https://laravel.com/docs/4.2#install-laravel)
+1. Install [Laravel](https://laravel.com/docs/8.x#installation-via-composer)
 
    ```bat
    composer global require "laravel/installer=~1.1"
@@ -59,13 +55,25 @@ The below files are placed in the `storage/app/public/json` folder.
    npm install
    ```
 
+1. Install [Laravel Dusk](https://laravel.com/docs/8.x/dusk)
+
+   ```bat
+   php artisan dusk:install
+   ```
+
 1. Create the MySQL database which will be used in the project
 
    ```sql
    CREATE DATABASE laravel_training;
    ```
 
-1. Verify the database information is correct in the `.env` file lines 10-15
+1. Rename `.env.example` to `.env` then verify the database information is correct in lines 10-16
+
+1. Generate your application encryption key
+
+   ```bat
+   php artisan key:generate
+   ```
 
 1. Create the tables (migrations)
 
