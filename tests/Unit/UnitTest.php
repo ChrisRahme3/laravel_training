@@ -20,7 +20,8 @@ class UnitTest extends TestCase {
 
 	public function test_get_product_id() {
 		for ($i = 1; $i <= 3; $i++) {
-			$product = json_decode(file_get_contents('http://127.0.0.1:8000/api/products/'.$i));
+			$url = 'http://127.0.0.1:8000/api/products/'.$i;
+			$product = json_decode(file_get_contents($url));
 
 			$this->assertEquals($product->id, $i);
 		}
