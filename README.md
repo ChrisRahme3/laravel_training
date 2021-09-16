@@ -22,11 +22,7 @@ Provide a mini-interface using:
 
 ## Tests - Task 3
 
-Provide some useful tests, a functional, unit & browser test for both frontend and backend.
-
-## Laravel Dusk - Task 4
-
-To be discussed before starting.
+Provide unit, functional, and browser tests for both frontend and backend.
 
 ---
 
