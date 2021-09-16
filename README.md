@@ -10,22 +10,19 @@ The data should be imported with the help with Eloquent to map the data to a SQL
 
 Furthermore, there should be a 2nd endpoint which returns the products in JSON format, retrieved through the database. Choose a JSON structure and data which you think is useful.
 
-## The View  - Task 2
+## The View - Task 2
 
 Provide a mini-interface using:
 
 1. Vue 3 ([task2-vue](https://github.com/ChrisRahme3/laravel_training/tree/task2-vue))
 2. Laravel ([task2-laravel](https://github.com/ChrisRahme3/laravel_training/tree/task2-laravel)) (Includes some changes on `1`)
-3. Vuex, Mixins, Filters ([task3-vuex](https://github.com/ChrisRahme3/laravel_training/tree/task2-laravel)) (Includes some changes on `2` and removed files)
-4. Nuxt, TypeScript
+3. Vuex, Mixins, Filters ([task2-vuex](https://github.com/ChrisRahme3/laravel_training/tree/task2-vuex)) (Includes some changes on `2`)
+4. TypeScript ([task2-typescript](https://github.com/ChrisRahme3/laravel_training/tree/task2-typescript)) (Includes some changes on `3`)
+5. Nuxt
 
-## Laravel Dusk  - Task 3
+## Tests - Task 3
 
-To be discussed before starting.
-
-## Tests  - Task 4
-
-Provide some useful tests, a functional, unit & browser test for both frontend and backend.
+Provide unit, functional, and browser tests for both frontend and backend.
 
 ---
 
@@ -43,27 +40,25 @@ The below files are placed in the `storage/app/public/json` folder.
 
 1. Install [Node.js](https://nodejs.org/en/download)
 
-1. Install [Composer](https://laravel.com/docs/4.2#install-composer)
+1. Install [Composer](https://getcomposer.org/Composer-Setup.exe)
 
-1. Install [Laravel](https://laravel.com/docs/4.2#install-laravel)
+1. Install [Laravel](https://laravel.com/docs/8.x#installation-via-composer)
 
    ```bat
    composer global require "laravel/installer=~1.1"
    ```
 
-1. Create project
+1. Install dependencies
 
    ```bat
-   composer create-project --prefer-dist laravel/laravel laravel_training
-   cd laravel_training
+   composer install
+   npm install
    ```
 
-1. Install Vue inside the project
+1. Install [Laravel Dusk](https://laravel.com/docs/8.x/dusk)
 
    ```bat
-   composer require "laravel/ui"
-   php artisan ui vue
-   npm install
+   php artisan dusk:install
    ```
 
 1. Create the MySQL database which will be used in the project
@@ -72,7 +67,13 @@ The below files are placed in the `storage/app/public/json` folder.
    CREATE DATABASE laravel_training;
    ```
 
-1. Verify the database information is correct in the `.env` file lines 10-15
+1. Rename `.env.example` to `.env` then verify the database information is correct in lines 10-16
+
+1. Generate your application encryption key
+
+   ```bat
+   php artisan key:generate
+   ```
 
 1. Create the tables (migrations)
 
@@ -80,7 +81,7 @@ The below files are placed in the `storage/app/public/json` folder.
    php artisan migrate:fresh --seed
    ```
 
-1. Run Laravel and Node locally - Project will start on port 8000
+1. Run Laravel and Node locally - Project will start on port 8000 (unless otherwise mentioned by Artisan)
 
    ```bat
    php artisan serve
@@ -97,4 +98,4 @@ The below files are placed in the `storage/app/public/json` folder.
 
 - Pages
   - All products: `http://127.0.0.1:8000/products/index_vue`
-  - One product: `http://127.0.0.1:8000/product/1`
+  - One product: `http://127.0.0.1:8000/product/{id}`
